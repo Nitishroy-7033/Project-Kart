@@ -18,7 +18,7 @@ const Navbar = () => {
   return (
     <Header
       style={{
-        backgroundColor: theme.background,
+        backgroundColor: theme.container,
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
