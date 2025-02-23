@@ -1,22 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
+import { useTheme } from './context/theme/ThemeContext';
 
 function App() {
+  const { theme, toggleTheme } = useTheme();
   return (
-    <div className="App">
+    <div className="App" style={{ background: theme.background, color: theme.text }}>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button
+      onClick={toggleTheme}
+      style={{
+        background: theme.primary,
+        color: theme.text,
+        padding: "10px 20px",
+        border: "none",
+        cursor: "pointer",
+        marginTop: "20px",
+        borderRadius: "5px",
+      }}
+    >
+      Toggle Theme
+    </button>
       </header>
     </div>
   );
