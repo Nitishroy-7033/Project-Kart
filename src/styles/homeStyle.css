@@ -1,0 +1,47 @@
+/* Home Expandable Banner */
+.homeBannerContainer {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.homeBannerExpandable {
+    padding: 10px;
+    width: 10vw; /* 25% of the viewport width */
+    border-radius: 20px;
+    flex: 0 0 auto;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+/* Default Expanded Box */
+.homeBannerExpandable.expanded {
+    width: 25vw; 
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .homeBannerExpandable {
+        display: none;
+    }
+
+    .homeBannerExpandable.expanded {
+        width: 50vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .homeBannerExpandable {
+       display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .homeBannerExpandable {
+        display: none;
+    }
+
+    .homeBannerExpandable.expanded {
+        width: 90vw;
+    }
+}
