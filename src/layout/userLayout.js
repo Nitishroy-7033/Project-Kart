@@ -7,11 +7,11 @@ const { Content } = Layout;
 const UserLayout = () => {
   return (
     <Layout>
+      {/* Navbar at the top */}
       <Navbar />
-
-    
-
-  
+      <Content style={{ padding: "20px", minHeight: "80vh" }}>
+        <Outlet />
+      </Content>
     </Layout>
   );
 };
