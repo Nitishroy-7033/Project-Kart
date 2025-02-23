@@ -1,4 +1,4 @@
-import { Layout, Menu, Button } from "antd";
+import { Layout, Menu, Button, Row } from "antd";
 import { Link } from "react-router-dom";
 import { useTheme } from "../context/theme/ThemeContext";
 import { MoonOutlined, SunOutlined } from "@ant-design/icons";
@@ -8,29 +8,37 @@ const { Header } = Layout;
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
 
+  const normalButtonStyle = {
+    color: theme.lableColor,
+    fontSize: "18px",
+    fontWeight: "normal",
+    textDecoration: "none",
+    transition: "0.3s",
+  };
   return (
-    <Header style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "0 20px" }}>
-      {/* Left Side - Logo and Links */}
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <Link to="/" style={{ color: "white", fontSize: "20px", fontWeight: "bold", marginRight: "20px" }}>
-          MyApp
-        </Link>
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={["home"]}
-          style={{ background: "transparent", borderBottom: "none" }}
-        >
-          <Menu.Item key="home">
-            <Link to="/">Home</Link>
-          </Menu.Item>
-          <Menu.Item key="about">
-            <Link to="/about">About</Link>
-          </Menu.Item>
-        </Menu>
+    <Header
+      style={{
+        backgroundColor: theme.background,
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "0 20px",
+      }}
+    >
+      <div style={{ color: "white", fontSize: "20px", fontWeight: "bold" }}>
+        React Antd Starter
       </div>
-
-      {/* Right Side - Theme Toggle Button */}
+      <Row style={{ gap: "20px" }}>
+        <Link
+          style={normalButtonStyle}
+          to="/"
+        >
+          Home
+        </Link>
+        <Link style={normalButtonStyle} to="/about">About</Link>
+        <Link style={normalButtonStyle} to="/contact">Contact</Link>
+        <Link style={normalButtonStyle} to="/admin">Admin</Link>
+      </Row>
       <Button type="primary" shape="circle" icon={theme === "dark" ? <SunOutlined /> : <MoonOutlined />} onClick={toggleTheme} />
     </Header>
   );

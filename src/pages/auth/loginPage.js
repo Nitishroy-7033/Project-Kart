@@ -2,12 +2,13 @@ import { Button, Col, Input, Row } from "antd";
 import { setRole } from "../../context/reducers/authSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import { useTheme } from "../../context/theme/ThemeContext";
+// import { useTheme } from "../context/theme/ThemeContext";
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { role } = useSelector((state) => state.auth);
-
+  const { theme, toggleTheme } = useTheme();
   const login = () => {
     dispatch(setRole("user"));
     navigate("/"); 
@@ -20,17 +21,19 @@ const LoginPage = () => {
 
   return (
     <Row
+
       align={"middle"}
       justify={"center"}
-      style={{ padding: "0 24px 24px", minHeight: "100vh" }}
+      style={{ 
+        background: theme.background,
+        padding: "0 24px 24px", minHeight: "100vh" }}
     >
       <Col
         span={8}
         style={{
-          backgroundColor: "white",
+          backgroundColor: theme.background,
           padding: "20px",
-          borderRadius: "10px",
-          boxShadow: "0 0 10px rgba(184, 184, 184, 0.5)",
+          boxShadow: "0 0 10px rgba(217, 217, 217, 0.5)",
         }}
       >
         <h1>Login Page</h1>

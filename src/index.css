@@ -5,9 +5,46 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Smooth transitions for all elements */
+* {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Buttons and Links Hover Effect */
+button, a {
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover, a:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+/* Navbar links */
+.nav-link {
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+/* Smooth page transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
