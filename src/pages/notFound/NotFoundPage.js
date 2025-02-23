@@ -9,7 +9,6 @@ const NotFoundPage = () => {
       align="middle"
       style={{
         height: "100vh",
-
         background: theme.background,
         color: theme.text,
       }}
