@@ -1,13 +1,21 @@
 import { Button, Col, Input, Row } from "antd";
-import AuthAction from "../../actions/authAction";
 import { setRole } from "../../context/reducers/authSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 const LoginPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { role } = useSelector((state) => state.auth);
 
   const login = () => {
     dispatch(setRole("user"));
+    navigate("/"); 
+  };
+
+  const adminLogin = () => {
+    dispatch(setRole("admin"));
+    navigate("/admin"); // Redirect to Admin Dashboard
   };
 
   return (
@@ -26,7 +34,7 @@ const LoginPage = () => {
         }}
       >
         <h1>Login Page</h1>
-
+        <h2>Your Current Role is <span style={{color:"blue"}} >{role}</span></h2>
         <Input size="large" type="email" placeholder="Enter email" />
         <br />
         <br />
@@ -36,7 +44,10 @@ const LoginPage = () => {
 
         <Row justify="center" style={{ gap: "10px" }}>
           <Button type="primary" onClick={login}>
-            Login
+            Login as user
+          </Button>
+          <Button type="primary" onClick={adminLogin}>
+            Login as admin
           </Button>
           <Button
             type="primary"
