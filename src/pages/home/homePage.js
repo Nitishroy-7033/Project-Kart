@@ -7,7 +7,7 @@ import {
 } from "../../context/reducers/homeSlice";
 import { FaRupeeSign } from "react-icons/fa";
 import { useState } from "react";
-import { Button, Card, Col, Layout, List, Row } from "antd";
+import { Button, Card, Col, FloatButton, Layout, List, Row } from "antd";
 import HomeHeroBanner from "./widgets/heroBanner";
 import { useTheme } from "../../context/theme/ThemeContext";
 import HeroBannerExpandable from "./widgets/heroBannerExpandable";
@@ -245,6 +245,7 @@ const HomePage = () => {
      <Row justify={"center"}>
      <Button>Load More</Button>
      </Row>
+     <FloatButton.BackTop />
     </Layout>
   );
 };
