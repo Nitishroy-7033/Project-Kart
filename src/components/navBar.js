@@ -28,6 +28,8 @@ const Navbar = () => {
       <div style={{ color:  theme.text, fontSize: "20px", fontWeight: "bold" }}>
         React Antd Starter
       </div>
+
+      
       <Row style={{ gap: "20px" }}>
         <Link
           style={normalButtonStyle}
