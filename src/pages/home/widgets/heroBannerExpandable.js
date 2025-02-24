@@ -47,7 +47,7 @@ const HeroBannerExpandable = () => {
       title: "Image 5",
       price: "1234",
       description: "Description 5",
-      image: "https://img.freepik.com/premium-psd/furniture-sale-social-media-instagram-post-template-banner-flyer_569266-51.jpg?w=360",
+      image: "https://img.freepik.com/premium-psd/furniture-sale-social-media-istagram-post-template-banner-flyer_569266-51.jpg?w=360",
     },
   ];
 
@@ -71,9 +71,7 @@ const HeroBannerExpandable = () => {
             expandedIndex === index ? "expanded" : ""
           }`}
           onMouseEnter={() => setExpandedIndex(index)}
-          
         >
-       
         </div>
       ))}
     </Row>

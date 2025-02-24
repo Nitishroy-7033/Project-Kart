@@ -5,11 +5,13 @@ import {
   setAge,
   incrementCount,
 } from "../../context/reducers/homeSlice";
+import { FaRupeeSign } from "react-icons/fa";
 import { useState } from "react";
 import { Button, Card, Col, Layout, List, Row } from "antd";
 import HomeHeroBanner from "./widgets/heroBanner";
 import { useTheme } from "../../context/theme/ThemeContext";
 import HeroBannerExpandable from "./widgets/heroBannerExpandable";
+import CircleCartButton from "../../components/cartButtons/circleCartButton";
 
 const HomePage = () => {
   const { theme } = useTheme();
@@ -191,28 +193,58 @@ const HomePage = () => {
         minHeight: "100vh",
       }}
     >
-      <HeroBannerExpandable/>
+      <HeroBannerExpandable />
       <br />
       <br />
       <HomeHeroBanner />
       <br />
       <br />
       <Row gutter={[16, 16]}>
-          {products.map((product) => (
-            <Col key={product.id} xl={6} lg={8} md={12} sm={12} xs={24}>
-              <Card
-                hoverable
-                style={{
-                  background: theme.container,
-                  color: theme.text,
-                  border:"none"
-                }}
-                cover={<img alt={product.name} src={product.imageUrls[0]} />}
-              >
-              </Card>
-            </Col>
-          ))}
-        </Row>
+        {products.map((product) => (
+          <Col key={product.id} xl={6} lg={8} md={12} sm={12} xs={24}>
+            <Card
+              hoverable
+              style={{
+                background: theme.container,
+                color: theme.text,
+                border: "none",
+              }}
+              cover={<img alt={product.name} src={product.imageUrls[0]} />}
+            >
+              <Row
+              align={"middle"}
+              justify={"space-between"}>
+                <Col>
+                  <div
+                    style={{
+                      fontSize: "20px",
+                      fontWeight: "600",
+                    }}
+                  >
+                    {product.name}
+                  </div>
+                  <Row
+                    align={"middle"}
+                    style={{
+                      fontSize: "25px",
+                      fontWeight: "700",
+                    }}
+                  >
+                    <FaRupeeSign />
+                    {product.price} /-
+                  </Row>
+                </Col>
+               <CircleCartButton borderRadius={"10px"}/>
+              </Row>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+      <br>
+      </br>
+     <Row justify={"center"}>
+     <Button>Load More</Button>
+     </Row>
     </Layout>
   );
 };

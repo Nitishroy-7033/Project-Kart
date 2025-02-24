@@ -4,7 +4,10 @@ import rootReducer from "./reducers/rootReducer";
 const loadState = () => {
   try {
     const serializedState = localStorage.getItem("reduxState");
-    return serializedState ? JSON.parse(serializedState) : undefined;
+    if (serializedState) {
+      return { auth: JSON.parse(serializedState) }; // Load only the auth slice
+    }
+    return undefined;
   } catch (err) {
     return undefined;
   }
@@ -12,7 +15,7 @@ const loadState = () => {
 
 const saveState = (state) => {
   try {
-    const serializedState = JSON.stringify(state);
+    const serializedState = JSON.stringify(state.auth); // Store only auth slice
     localStorage.setItem("reduxState", serializedState);
   } catch (err) {
     console.error("Could not save state", err);
@@ -21,11 +24,11 @@ const saveState = (state) => {
 
 const store = configureStore({
   reducer: rootReducer,
-  preloadedState: loadState(),
+  preloadedState: loadState(), // Load only auth slice into preloaded state
 });
 
 store.subscribe(() => {
-  saveState(store.getState());
+  saveState(store.getState()); // Save only auth slice
 });
 
 export default store;

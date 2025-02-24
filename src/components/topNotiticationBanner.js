@@ -10,9 +10,7 @@ import { useEffect } from "react";
 const TopNotificationBanner = () => {
   const { theme, toggleTheme } = useTheme();
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setIsNotificationShow(true));
-  }, []);
+
   const onClose = () => {
     dispatch(setIsNotificationShow(false));
   };
