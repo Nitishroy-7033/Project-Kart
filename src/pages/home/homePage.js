@@ -12,8 +12,10 @@ import HomeHeroBanner from "./widgets/heroBanner";
 import { useTheme } from "../../context/theme/ThemeContext";
 import HeroBannerExpandable from "./widgets/heroBannerExpandable";
 import CircleCartButton from "../../components/cartButtons/circleCartButton";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const { theme } = useTheme();
   const [isGridView, setIsGridView] = useState(false);
   const products = [
@@ -185,6 +187,9 @@ const HomePage = () => {
       isLiked: false,
     },
   ];
+  const handleProductClick = (id) => {
+    navigate(`/products/${id}`);
+  };
   return (
     <Layout
       style={{
@@ -203,6 +208,7 @@ const HomePage = () => {
         {products.map((product) => (
           <Col key={product.id} xl={6} lg={8} md={12} sm={12} xs={24}>
             <Card
+            onClick={() => handleProductClick(product.id)}
               hoverable
               style={{
                 background: theme.container,

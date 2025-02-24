@@ -6,6 +6,7 @@ import { Layout } from "antd";
 import Navbar from "../components/navBar";
 import TopNotificationBanner from "../components/topNotiticationBanner";
 import { useDispatch, useSelector } from "react-redux";
+import ProductDetails from "../pages/productDetails/productsDetails";
 
 const UserRoutes = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const UserRoutes = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/products/:productId" element={<ProductDetails />} />
         {/* <Route path="/" element={<LoginPage />} /> */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
