@@ -14,7 +14,6 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Public Route */}
         <Route path="/auth" element={<LoginPage />} />
 
         {/* Protected User Routes */}
