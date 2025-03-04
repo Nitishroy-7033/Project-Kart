@@ -145,6 +145,13 @@ const ProductDetails = () => {
         
         <ProductDescriptionWidget/>
       <br></br>
+      <div style={{ fontSize: "20px", fontWeight: "600", color: theme.text }}>
+        Related Product
+      </div>
+      <div style={{ fontSize: "15px", fontWeight: "400", color: theme.lableColor }}>
+        These all are the related products of the above product
+      </div>
+      <br></br>
       <RelatedProductWidget/>
     </Layout>
   );

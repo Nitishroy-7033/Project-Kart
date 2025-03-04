@@ -7,6 +7,7 @@ import Navbar from "../components/navBar";
 import TopNotificationBanner from "../components/topNotiticationBanner";
 import { useDispatch, useSelector } from "react-redux";
 import ProductDetails from "../pages/productDetails/productsDetails";
+import FooterWidget from "../components/footer/footerWidget";
 
 const UserRoutes = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const UserRoutes = () => {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
      </div>
+     <FooterWidget/>
     </Layout>
   );
 };
