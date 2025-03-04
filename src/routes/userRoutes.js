@@ -13,17 +13,21 @@ const UserRoutes = () => {
   
   const { isNotificationShow } = useSelector((state) => state.appSettings);
   return (
-    <Layout>
+    <Layout >
      {
         isNotificationShow === true? <TopNotificationBanner /> : null
      }
       <Navbar />
-      <Routes>
+     <div style={{
+      // padding:"20px"
+     }}>
+     <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/products/:productId" element={<ProductDetails />} />
         {/* <Route path="/" element={<LoginPage />} /> */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+     </div>
     </Layout>
   );
 };

@@ -44,10 +44,18 @@ const TopNotificationBanner = () => {
         <IoNotifications size={15} />
         Get 50% off on Selected items | Show Now
       </Row>
-      <IconButton
-        icon={<IoMdClose color={theme.background} />}
-        onClick={onClose}
-      />
+      <div onClick={onClose}
+      style={{
+        padding:"2px",
+        // backgroundColor: theme.primary,
+        cursor:"pointer",
+        display:"flex",
+        alignItems:"center",
+        justifyContent:"center",
+      }}
+      >
+        <IoMdClose color={theme.background} />
+      </div>
     </Row>
   );
 };

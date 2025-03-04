@@ -194,13 +194,13 @@ const HomePage = () => {
     <Layout
       style={{
         background: theme.background,
-        padding: "20px 24px 24px",
+        padding: "20px 150px",
         minHeight: "100vh",
       }}
     >
-      <HeroBannerExpandable />
+      {/* <HeroBannerExpandable /> */}
       <br />
-      <br />
+      {/* <br /> */}
       <HomeHeroBanner />
       <br />
       <br />

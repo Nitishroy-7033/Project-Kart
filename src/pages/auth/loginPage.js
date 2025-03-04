@@ -21,7 +21,6 @@ const LoginPage = () => {
 
   return (
     <Row
-
       align={"middle"}
       justify={"center"}
       style={{ 
