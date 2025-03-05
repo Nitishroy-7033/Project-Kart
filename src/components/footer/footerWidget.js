@@ -50,15 +50,14 @@ const FooterWidget = () => {
         ></Col>
       </Row>
       <Row
-      justify={"center"}
-      align={"middle"}
+        justify={"center"}
+        align={"middle"}
         style={{
           height: "30px",
           backgroundColor: theme.secondary,
         }}
       >
         @2025 All Right Reserved By DevHQ.in
-
       </Row>
     </Col>
   );

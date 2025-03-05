@@ -1,6 +1,5 @@
 import { Col, Row } from "antd";
 import { BiShoppingBag, BiStar } from "react-icons/bi";
-import useResponsiveStyles from "../../../context/useResponsiveStyles";
 import { useTheme } from "../../../context/theme/ThemeContext";
 import { FaRupeeSign } from "react-icons/fa";
 import PrimaryButton from "../../../components/buttons/primaryButtons";
@@ -8,11 +7,9 @@ import { FaCartArrowDown } from "react-icons/fa6";
 import "../style/productDetailsStyle.css";
 
 const ProductDetailsWidget=({productDetails})=>{
-    const screenSize = useResponsiveStyles();
     const { theme } = useTheme();
   
-    const padding = theme.layout.padding[screenSize];
-    const width = theme.layout.width[screenSize];
+    const padding = theme.layout.padding["medium"];
     const techColors = [
         "#f34f29",
         "#3572A5",

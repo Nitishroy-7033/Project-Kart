@@ -6,6 +6,7 @@ import UserRoutes from "./routes/userRoutes";
 import AdminRoutes from "./routes/adminRoutes";
 import LoginPage from "./pages/auth/loginPage";
 import ProtectedRoute from "./configs/protectedRoutes";
+import ScrollToTop from "./context/ScrollToTop";
 
 function App() {
   const { theme, toggleTheme } = useTheme();
@@ -13,6 +14,8 @@ function App() {
 
   return (
     <Router>
+     
+        <ScrollToTop />
       <Routes>
         <Route path="/auth" element={<LoginPage />} />
 

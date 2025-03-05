@@ -13,6 +13,7 @@ import { useTheme } from "../../context/theme/ThemeContext";
 import HeroBannerExpandable from "./widgets/heroBannerExpandable";
 import CircleCartButton from "../../components/cartButtons/circleCartButton";
 import { useNavigate } from "react-router-dom";
+import ProductCard from "../../components/products/productCard";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -206,44 +207,7 @@ const HomePage = () => {
       <br />
       <Row gutter={[16, 16]}>
         {products.map((product) => (
-          <Col key={product.id} xl={6} lg={8} md={12} sm={12} xs={24}>
-            <Card
-            onClick={() => handleProductClick(product.id)}
-              hoverable
-              style={{
-                background: theme.container,
-                color: theme.text,
-                border: "none",
-              }}
-              cover={<img alt={product.name} src={product.imageUrls[0]} />}
-            >
-              <Row
-              align={"middle"}
-              justify={"space-between"}>
-                <Col>
-                  <div
-                    style={{
-                      fontSize: "20px",
-                      fontWeight: "600",
-                    }}
-                  >
-                    {product.name}
-                  </div>
-                  <Row
-                    align={"middle"}
-                    style={{
-                      fontSize: "25px",
-                      fontWeight: "700",
-                    }}
-                  >
-                    <FaRupeeSign />
-                    {product.price} /-
-                  </Row>
-                </Col>
-               <CircleCartButton borderRadius={"10px"}/>
-              </Row>
-            </Card>
-          </Col>
+          <ProductCard product={product} />
         ))}
       </Row>
       <br>

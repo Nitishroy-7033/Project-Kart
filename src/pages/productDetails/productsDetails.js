@@ -3,17 +3,12 @@ import { useTheme } from "../../context/theme/ThemeContext";
 import { useState } from "react";
 import { BiStar } from "react-icons/bi";
 import { FaRupeeSign } from "react-icons/fa";
-import useResponsiveStyles from "../../context/useResponsiveStyles";
 import ProductDetailsWidget from "./widgets/leftSideProductDetails";
 import ProductDescriptionWidget from "./widgets/productDescriptionWidget";
 import RelatedProductWidget from "./widgets/relatedProductWidget";
 
 const ProductDetails = () => {
-  const screenSize = useResponsiveStyles();
   const { theme } = useTheme();
-
-  const padding = theme.layout.padding[screenSize];
-  const width = theme.layout.width[screenSize];
   const techColors = [
     "#f34f29",
     "#3572A5",
@@ -32,6 +27,9 @@ const ProductDetails = () => {
     price: 100,
     imageUrls: [
       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+      "https://www.eatthis.com/wp-content/uploads/sites/4/2023/06/cushioned-running-shoes.jpg?quality=82&strip=all&w=640",
+      "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+      "https://www.eatthis.com/wp-content/uploads/sites/4/2023/06/cushioned-running-shoes.jpg?quality=82&strip=all&w=640",
       "https://www.eatthis.com/wp-content/uploads/sites/4/2023/06/cushioned-running-shoes.jpg?quality=82&strip=all&w=640",
       "https://d2v5dzhdg4zhx3.cloudfront.net/adminTemplate/404c6038b0f745f3aab928bb7ab52173.jpg",
     ],
@@ -83,8 +81,9 @@ const ProductDetails = () => {
       <Breadcrumb
         items={[
           { href: "", title: "Home" },
-          { href: "", title: <span>Application List</span> },
-          { title: "Application" },
+          { href: "", title: <span>Products</span> },
+          { href: "", title: <span>Software</span> },
+          { title: "Smart Car Parking System - (Flutter+Getx+Firebase)" },
         ]}
       />
       <Row justify="space-between" style={{
@@ -136,14 +135,11 @@ const ProductDetails = () => {
           </Row>
         </Col>
 
-        {/* Right Section - Product Details */}
         <ProductDetailsWidget />
         
       </Row>
       <br></br>
-      {/* <hr></hr> */}
-        
-        <ProductDescriptionWidget/>
+      <ProductDescriptionWidget/>
       <br></br>
       <div style={{ fontSize: "20px", fontWeight: "600", color: theme.text }}>
         Related Product
