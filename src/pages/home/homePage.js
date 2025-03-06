@@ -175,7 +175,7 @@ const HomePage = () => {
     {
       id: 5,
       name: "Product 5",
-      price: 500,
+      price: 0,
       imageUrls: [
         "https://th.bing.com/th/id/OIP.qFLJlBnH2xkl508yedA9pQHaFS?w=1600&h=1141&rs=1&pid=ImgDetMain",
         "https://th.bing.com/th/id/OIP.qFLJlBnH2xkl508yedA9pQHaFS?w=1600&h=1141&rs=1&pid=ImgDetMain",
@@ -207,7 +207,7 @@ const HomePage = () => {
       <br />
       <Row gutter={[16, 16]}>
         {products.map((product) => (
-          <ProductCard product={product} />
+          <ProductCard onClick={() => handleProductClick(product.id)} product={product} />
         ))}
       </Row>
       <br>

@@ -6,6 +6,8 @@ const lightTheme = {
   lableColor: "#A1A1A1",
   secondary: "#F0C029",
   borderColor:"#f0f0f0",
+  greenColor:"#00FF00",
+  redColor:"#FF0000",
 
   typography: {
     headingLarge: {
