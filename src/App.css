@@ -1,4 +1,4 @@
-Button{
+/* Button{
     width: 100% !important;
     height: 45px  !important;
     background-color: var(--primary-color) !important;
@@ -12,7 +12,7 @@ Button{
 Button:hover{
     background-color: var(--success-color) !important;
     color: var(--background-color) !important;
-}
+} */
 
 
 .squre-button{
@@ -24,10 +24,28 @@ Button:hover{
     font-size: 1.3rem !important;
     font-weight: 500 !important;
     cursor: pointer;
-    border-radius: 0px;
+    border-radius: 10px;
 }
 
 .squre-button:hover{
     background-color: var(--primary-color) !important;
     color: white !important;
 }
+
+.body-container{
+    padding: 30px 200px;
+}
+
+
+@media (max-width: 768px) {
+    .body-container{
+        padding: 30px 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .body-container{
+        padding: 30px 20px;
+    }
+  }
+  
