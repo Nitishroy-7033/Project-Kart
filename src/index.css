@@ -1,10 +1,29 @@
-/* Import Poppins font from Google Fonts */
+:root {
+  --background-color: #f0f2f5;
+  --text-color: #333333;
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --info-color: #17a2b8;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+  --link-color: #007bff;
+  --link-hover-color: #0056b3;
+  --link-hover-decoration: underline;
+  --border-color: #e0e0e0;
+  --border-radius: 0.25rem;
+  --max-width: 1170px;
+  --fixed-width: 700px;
+} 
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 /* Global styles */
 * {
   font-family: 'Poppins', sans-serif;
-  transition: all 0.3s ease-in-out;
+  
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -17,7 +36,9 @@ body {
                'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: var(--background-color);
+  color: var(--text-color);
+
 }
 
 /* Code block styling */
@@ -27,17 +48,15 @@ code {
 
 /* Buttons and Links Hover Effect */
 button, a {
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  
 }
 
 button:hover, a:hover {
-  transform: scale(1.05); /* Slight zoom effect on hover */
+  transform: scale(1.05); 
 }
 
 /* Navbar links */
-.nav-link {
-  transition: color 0.3s ease, background-color 0.3s ease;
-}
+
 
 .nav-link:hover {
   background-color: rgba(0, 0, 0, 0.1);
@@ -53,7 +72,7 @@ button:hover, a:hover {
 .page-enter-active {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  
 }
 
 /* Responsive Typography */

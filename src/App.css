@@ -1,0 +1,33 @@
+Button{
+    width: 100% !important;
+    height: 45px  !important;
+    background-color: var(--primary-color) !important;
+    border: none !important;
+    color: var(--background-color) !important;
+    font-size: 1.0rem !important;
+    font-weight: 500 !important;
+    cursor: pointer;
+}
+
+Button:hover{
+    background-color: var(--success-color) !important;
+    color: var(--background-color) !important;
+}
+
+
+.squre-button{
+    width: 40px !important;
+    height: 40px !important;
+    background-color: var(--background-color) !important;
+    border: 1px solid var(--primary-color) !important;
+    color: var(--primary-color) !important;
+    font-size: 1.3rem !important;
+    font-weight: 500 !important;
+    cursor: pointer;
+    border-radius: 0px;
+}
+
+.squre-button:hover{
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
