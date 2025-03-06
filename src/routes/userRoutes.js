@@ -1,24 +1,24 @@
 import { Routes, Route } from "react-router-dom";
 import NotFoundPage from "../pages/notFound/NotFoundPage";
 import { Layout } from "antd";
+import HomePage from "../pages/home/homePage";
+import NavBar from "../components/navBar";
 
 const UserRoutes = () => {
-  
-  const { isNotificationShow } = useSelector((state) => state.appSettings);
   return (
     <Layout >
-     {
+     {/* {
         isNotificationShow === true? <TopNotificationBanner /> : null
-     }
-      {/* <Navbar /> */}
+     } */}
+      <NavBar />
      <div>
      <Routes>
-        {/* <Route path="/" element={<HomePage />} /> */}
+        <Route path="/" element={<HomePage />} />
         {/* <Route path="/products/:productId" element={<ProductDetails />} /> */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
      </div>
-     <FooterWidget/>
+     {/* <FooterWidget/> */}
     </Layout>
   );
 };

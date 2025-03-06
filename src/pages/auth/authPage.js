@@ -18,6 +18,11 @@ const AuthPage = () => {
   const handleTabChange = (key) => {
     setActiveTab(key);
   };
+  const loginHandle = () => {
+    console.log("login");
+    localStorage.setItem("role", "user");
+  }
+
 
   return (
     <div
@@ -70,7 +75,7 @@ const AuthPage = () => {
               </Form.Item>
               <Form.Item>
                 <Row justify={"center"}>
-                  <Button> Login </Button>
+                  <Button onClick={()=>{loginHandle()}}> Login </Button>
                 </Row>
               </Form.Item>
               <Text type="secondary">
