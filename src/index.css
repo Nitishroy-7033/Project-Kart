@@ -18,7 +18,7 @@
   --border-radius: 0.25rem;
   --max-width: 1170px;
   --fixed-width: 700px;
-  --footer-color:#f1edfd;
+  --footer-color:#343434;
 } 
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');

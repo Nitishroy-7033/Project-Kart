@@ -66,6 +66,58 @@
   /* box-shadow: 0px 4px 10px rgba(151, 151, 151, 0.2); */
 }
 
+
+/* Main styling for the footer */
+.footer-col {
+  margin: 0;
+  padding: 20px;
+  color: #fff;
+  text-align: left;
+}
+.footer-header {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+/* Styling for the list */
+.footer-list {  
+  list-style-type:disc ; 
+  align-items: center;
+
+}
+
+.footer-list li {
+  /* margin: 10px 0; */
+}
+
+.footer-list li a {
+  text-decoration: none;
+  color: var(--light-color);
+  font-size: 1.0rem;
+  padding: 5px;
+  display: block;
+  transition: background-color 0.3s ease, padding-left 0.3s ease;
+  border-radius: 5px;
+}
+
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .footer-col {
+    padding: 15px;
+  }
+
+  .footer-header {
+    font-size: 1.6rem;
+  }
+
+  .footer-list li a {
+    font-size: 1rem;
+  }
+}
+
+
 @media (max-width: 768px) {
   .nav-bar {
     width: 100%;
