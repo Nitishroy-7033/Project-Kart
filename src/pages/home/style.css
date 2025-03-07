@@ -1,74 +1,70 @@
-.live-button{
-    border: 2px solid var(--secondary-color);
-    font-size: 15px;
-    padding: 10px 20px;
-    background-color: var(--background-color);
-    border-radius:100px;
-    color: var(--secondary-color);
-    display: flex;
-    align-items: center;
-    font-weight: 600;
-    gap: 10px;
-    
+.live-button {
+  border: 2px solid var(--secondary-color);
+  font-size: 15px;
+  padding: 10px 20px;
+  background-color: var(--background-color);
+  border-radius: 100px;
+  color: var(--secondary-color);
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  gap: 10px;
 }
 
 .circle {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: var(--secondary-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--background-color);
-    font-size: 20px;
-    margin-right: 10px;
-    position: relative;
-    animation: shrinkInOut 2s infinite, colorFlow 3s infinite ease-in-out;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--background-color);
+  font-size: 20px;
+  margin-right: 10px;
+  position: relative;
+  animation: shrinkInOut 2s infinite, colorFlow 3s infinite ease-in-out;
+}
+
+.brand-tagline {
+  text-align: center;
+  width: 80%;
+  font-size: 4rem;
+  font-weight: 500;
+  color: var(--light-color);
+  margin-top: 20px;
+
+  text-shadow: 3px 3px 10px rgba(136, 136, 136, 0.2),
+    -1px -1px 10px rgba(119, 119, 119, 0.2), 1px 1px 10px rgba(0, 0, 0, 0.3);
+}
+
+.product-main-box {
+  padding: 0px 200px;
+}
+
+@keyframes colorFlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(245, 73, 15, 0.7);
   }
-
-
-  .brand-tagline {
-    text-align: center;
-    width: 80%;
-    font-size: 4rem;
-    font-weight: 500;
-    color: var(--light-color); 
-    margin-top: 20px;
-  
-    
-    text-shadow: 
-      3px 3px 10px rgba(136, 136, 136, 0.2), 
-      -1px -1px 10px rgba(119, 119, 119, 0.2), 
-      1px 1px 10px rgba(0, 0, 0, 0.3);  
+  50% {
+    box-shadow: 0 0 0 10px rgba(245, 73, 15, 0.3);
   }
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  @keyframes colorFlow {
-    0% {
-      box-shadow: 0 0 0 0 rgba(245, 73, 15, 0.7);  
-    }
-    50% {
-      box-shadow: 0 0 0 10px rgba(245, 73, 15, 0.3); 
-    }
-    100% {
-      box-shadow: 0 0 0 0 rgba(245, 73, 15, 0.7);  
-    }
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 73, 15, 0.7);
   }
+}
+
+@media (max-width: 768px) {
+  .product-main-box {
+    padding: 0px 20px;
+  }
+  .brand-tagline{
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-main-box {
+    padding: 0px 20px;
+  }
+}

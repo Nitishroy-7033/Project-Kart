@@ -277,9 +277,8 @@ const HomePage = () => {
 
       <Row
         gutter={[16, 16]}
-        style={{
-          padding: "0px 200px",
-        }}
+        className="product-main-box"
+      
       >
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
