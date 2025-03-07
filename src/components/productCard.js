@@ -1,15 +1,15 @@
 import { Button, Col, Row } from "antd";
 import { FaRupeeSign } from "react-icons/fa";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
-
+import "./style.css"
 const ProductCard = ({ product , onClick }) => {
     // const priceColor = product.price === 0 ? theme.greenColor : theme.text;
     
     return (
-      <Col onClick={onClick} key={product.id} md={9} lg={8} xl={9} xxl={8}>
+      <Col onClick={onClick} key={product.id} md={9} lg={8} xl={9} xxl={8} >
         <div
+        className="product-card"
           style={{
-            background: "var(--light-color)",
             textAlign: "center",
             borderRadius: "8px",
             overflow: "hidden",

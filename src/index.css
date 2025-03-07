@@ -1,7 +1,8 @@
 :root {
-  --background-color: #f0f2f5;
+  --background-color: #f5f7fa;
   --text-color: #333333;
-  --primary-color: #007bff;
+  --primary-container:#ffffff,;
+  --primary-color: #7047eb;
   --lable-color: #6c757d;
   --secondary-color: #f5490f;
   --success-color: #28a745;
@@ -17,6 +18,7 @@
   --border-radius: 0.25rem;
   --max-width: 1170px;
   --fixed-width: 700px;
+  --footer-color:#f1edfd;
 } 
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');

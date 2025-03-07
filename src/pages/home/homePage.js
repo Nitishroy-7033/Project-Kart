@@ -3,6 +3,7 @@ import "./style.css";
 import "./../../App.css";
 import { useState } from "react";
 import ProductCard from "../../components/productCard";
+import FooterWidget from "../../components/footerWidget";
 // import { FooterWidget } from "../../components/footerWidget";
 const HomePage = () => {
   const [selectedFilter, setSelectedFilter] = useState("assignment");
@@ -196,45 +197,43 @@ const HomePage = () => {
       sortDescription: "This is a product",
       isLiked: false,
     },
-  ];
-  return (
+  ]; return (
     <Layout
       style={{
-        height: "100vh", // Full viewport height
+        minHeight: "100vh",
       }}
     >
       <Row
         style={{
           height: "80vh", // 80% of the viewport height
-          backgroundSize: "cover", // Ensure background image covers the entire area
-          backgroundPosition: "center", // Center the image
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           backgroundImage:
             "url('https://images.unsplash.com/photo-1508739773434-c26b3d09e071?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
-          backgroundColor: "var(--primary-color)", // Fallback background color
           display: "flex",
-          alignItems: "center",
+          justifyContent: "center", // Center the content horizontally
+          alignItems: "center", // Center the content vertically
         }}
       >
         <Col
           style={{
-            padding: "20px",
+            textAlign: "center",
+            color: "#fff",
           }}
-          justify={"center"}
-          about="center"
           xs={24}
           md={24}
           lg={24}
           xl={24}
         >
-          <Row justify={"center"}>
+          <Row justify="center">
             <div className="live-button">
               <div className="circle"></div>
-              Cantact With us
+              Contact With Us
             </div>
           </Row>
-          <Row justify={"center"}>
+          <Row justify="center">
             <div className="brand-tagline">
-              One stop solution for all Student who{" "}
+              One stop solution for all Students who{" "}
               <span
                 style={{
                   color: "var(--secondary-color)",
@@ -269,14 +268,13 @@ const HomePage = () => {
                 onChange={(value) => {
                   setSelectedFilter(value);
                 }}
-                onSearch={() => {}}
                 options={filterMenu}
               />
             </Row>
           </Row>
-          {/* <br></br> */}
         </Col>
       </Row>
+
       <Row
         gutter={[16, 16]}
         style={{
@@ -284,11 +282,11 @@ const HomePage = () => {
         }}
       >
         {products.map((product) => (
-          <ProductCard product={product} />
+          <ProductCard key={product.id} product={product} />
         ))}
       </Row>
-
-    
+      <br></br>
+    <FooterWidget/>
     </Layout>
   );
 };
