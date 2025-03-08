@@ -10,8 +10,10 @@ import {
   LinkedinOutlined,
 } from "@ant-design/icons";
 import PrimaryButton from "../../components/primaryButtons";
+import { useNavigate } from "react-router-dom";
 
 const AuthPage = () => {
+  const navigation = useNavigate();
   const { Title, Text } = Typography;
   const [activeTab, setActiveTab] = useState("login");
 
@@ -21,6 +23,7 @@ const AuthPage = () => {
   const loginHandle = () => {
     console.log("login");
     localStorage.setItem("role", "user");
+    navigation("/");
   }
 
 

@@ -199,7 +199,7 @@ const AllProductsPage = () => {
 
       <Row justify="space-between">
        
-        <Col className="product-filter-box" md={7} lg={7} xl={7} xxl={7}>
+        <Col className="product-filter-box" md={7} lg={7} xl={7} xxl={5}>
           <Space className="filter-title">🪴 Filter Products</Space>
           <hr className="filter-divider" />
 
@@ -235,7 +235,7 @@ const AllProductsPage = () => {
         </Col>
 
         {/* Right side - Scrollable */}
-        <Col className="product-list" md={14} lg={14} xl={14} xxl={17}>
+        <Col className="product-list" md={14} lg={14} xl={14} xxl={19}>
           <Row style={{
             width:"100%"
           }} gutter={[16, 16]} >

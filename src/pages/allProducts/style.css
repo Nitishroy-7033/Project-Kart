@@ -14,7 +14,7 @@
   
   /* Left Column (Filter Box) */
   .product-filter-box {
-    background-color: var(--background-color);
+    background-color: var(--light-color);
     box-shadow: 0px 4px 10px rgba(175, 175, 175, 0.2);
     border-radius: 10px;
     padding: 15px;

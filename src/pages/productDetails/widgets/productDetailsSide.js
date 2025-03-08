@@ -1,7 +1,11 @@
-import { Button, Col, Row, Space } from "antd";
+import { Button, Col, Row, Space, Tooltip } from "antd";
 import { BiStar } from "react-icons/bi";
 import { FaRupeeSign } from "react-icons/fa";
 import { FiHeart, FiPhoneCall, FiShoppingCart, FiSmile, FiStar } from "react-icons/fi";
+import ProductReviewSection from "./productReview";
+import SellerInformationSection from "./sellerInformationSection";
+import RelatedProductSection from "./relatedProductSection";
+import ProductDescriptionSection from "./productDescriptionSection";
 
 const ProductDetailsWidget = ({ productDetails }) => {
   const techColors = [
@@ -224,8 +228,19 @@ const ProductDetailsWidget = ({ productDetails }) => {
       <Row align={"middle"} style={{ gap: "20px" }}>
        <Button className="buy-button"> <FiSmile size={25} color="yellow" /> Buy Now</Button>
        <Button className="add-to-cart-button"><FiShoppingCart size={20} />  Add To Cart</Button>
+       <Tooltip title={"Contact with seller"}>
        <div className="icon-button"> <FiPhoneCall /></div>
+       </Tooltip>
       </Row>
+
+      <br></br>
+      <ProductDescriptionSection/>
+      <br></br>
+      <RelatedProductSection/>
+      <br></br>
+      <SellerInformationSection/>
+      <br></br>
+      <ProductReviewSection/>
     </Col>
   );
 };

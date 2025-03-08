@@ -17,6 +17,7 @@ const ProductCard = ({ product , onClick }) => {
           }}
         >
           <img
+            
             src={product.imageUrls?.[0] || "/placeholder.jpg"}
             alt={product.name || "Product Image"}
             style={{
