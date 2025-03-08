@@ -253,6 +253,11 @@ const HomePage = () => {
     },
   ];
 
+
+  const handleProductClick=(product)=>{
+    navigate(`/products/${product.id}/${product.name}`);
+    // console.log(product.id)
+  }
   return (
     <Layout
       style={{
@@ -431,11 +436,13 @@ const HomePage = () => {
         </Col>
       </Row>
 
-      <Row gutter={[16, 16]} className="product-main-box">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </Row>
+        <Row gutter={[16, 16]} className="product-main-box">
+          {products.map((product) => (
+            <ProductCard key={product.id} onClick={()=>{
+              handleProductClick(product)
+            }} product={product} />
+          ))}
+        </Row>
       <Row className="body-container" justify={"center"}>
         <Space>
           <Button

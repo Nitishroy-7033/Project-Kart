@@ -5,6 +5,7 @@ import HomePage from "../pages/home/homePage";
 import NavBar from "../components/navBar";
 import AllProductsPage from "../pages/allProducts/allProductsPage";
 import FooterWidget from "../components/footerWidget";
+import ProductDetails from "../pages/productDetails/ProductDetails"
 
 const UserRoutes = () => {
   return (
@@ -17,7 +18,7 @@ const UserRoutes = () => {
      <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<AllProductsPage />} />
-        {/* <Route path="/products/:productId" element={<ProductDetails />} /> */}
+        <Route path="/products/:productId/:productTitle" element={<ProductDetails />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
      </div>

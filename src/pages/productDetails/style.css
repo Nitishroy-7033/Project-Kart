@@ -1,0 +1,46 @@
+.product-image-box{
+    background-color: var(--background-color);
+    /* background-color: red; */
+    box-shadow: 0px 4px 10px rgba(175, 175, 175, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    /* height: 650px; */
+    /* height: fit-content; */
+}
+
+.product-image {
+    aspect-ratio: 1 / 1;  /* Maintain a 16:9 aspect ratio */
+    width: 100%;           /* The image or container will take up the full width of its parent */
+    object-fit: cover;     /* Ensures the image fills the container while maintaining its aspect ratio */
+    border-radius: 8px;    /* Optional: adds rounded corners */
+  }
+  
+
+  /* Container for images with horizontal scrolling */
+.image-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px; /* Adds some spacing between images */
+    scroll-behavior: smooth; /* Smooth scroll effect */
+    padding: 10px 0;
+  }
+  
+  /* Each image block style */
+  .image-item {
+    width: 100px;
+    height: 100px;
+    background-color: red; /* Change this to actual image or background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Arrow buttons */
+  .arrow-button {
+    cursor: pointer;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  

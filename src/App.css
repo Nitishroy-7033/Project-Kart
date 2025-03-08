@@ -37,15 +37,25 @@
 }
 
 
-@media (max-width: 768px) {
+.box-div{
+    background-color: red;
+}
+
+@media (max-width: 925px) {
     .body-container{
         padding: 30px 20px;
     }
+    .box-div{
+        background-color: green;
+    }
   }
   
-  @media (max-width: 480px) {
+  @media (max-width: 500px) {
     .body-container{
         padding: 30px 20px;
+    }
+    .box-div{
+        background-color: yellow;
     }
   }
   
