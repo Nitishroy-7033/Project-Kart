@@ -1,4 +1,4 @@
-import { Avatar, Badge, Menu, Popover, Row } from "antd";
+import { Avatar, Badge, Dropdown, Menu, Popover, Row, Space } from "antd";
 import "./style.css";
 import { useState } from "react";
 import {
@@ -33,15 +33,37 @@ const NavBar = () => {
       ],
     },
   ];
+  const itemss = [
+    {
+      key: "1",
+      label: "My Account",
+      disabled: true,
+    },
+    {
+      type: "divider",
+    },
+    {
+      key: "2",
+      label: "Profile",
+      extra: "⌘P",
+    },
+    {
+      key: "3",
+      label: "Billing",
+      extra: "⌘B",
+    },
+    {
+      key: "4",
+      label: "Settings",
+      extra: "⌘S",
+    },
+  ];
   const [current, setCurrent] = useState("/");
   const onClick = (e) => {
     console.log("click ", e);
     setCurrent(e.key);
   };
-  const content = (
-    <div>
-      Your cart is empty
-    </div>);
+  const content = <div>Your cart is empty</div>;
   return (
     <Row justify={"center"} align={"middle"} className="nav-bar-top">
       <Row className="nav-bar" align={"middle"} justify={"space-between"}>
@@ -61,7 +83,7 @@ const NavBar = () => {
             mode="horizontal"
             items={items}
           />
-
+         
           <Badge count={5} style={{}}>
             <Popover content={content} title="Cart items">
               <Avatar

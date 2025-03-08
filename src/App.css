@@ -1,4 +1,4 @@
-/* Button{
+.primary-button{
     width: 100% !important;
     height: 45px  !important;
     background-color: var(--primary-color) !important;
@@ -9,10 +9,10 @@
     cursor: pointer;
 }
 
-Button:hover{
+.primary-button:hover{
     background-color: var(--success-color) !important;
     color: var(--background-color) !important;
-} */
+} 
 
 
 .squre-button{
