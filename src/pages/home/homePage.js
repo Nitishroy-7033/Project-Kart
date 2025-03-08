@@ -15,6 +15,8 @@ const HomePage = () => {
   const handleLoadMoreProduct = () => {
     navigate("/products");
   };
+
+
   var filterMenu = [
     {
       label: "All",

@@ -6,6 +6,7 @@ import NavBar from "../components/navBar";
 import AllProductsPage from "../pages/allProducts/allProductsPage";
 import FooterWidget from "../components/footerWidget";
 import ProductDetails from "../pages/productDetails/ProductDetails"
+import UserProfile from "../pages/profile/userProfile";
 
 const UserRoutes = () => {
   return (
@@ -18,6 +19,7 @@ const UserRoutes = () => {
      <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<AllProductsPage />} />
+        <Route path="/users/:userId" element={<UserProfile />} />
         <Route path="/products/:productId/:productTitle" element={<ProductDetails />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

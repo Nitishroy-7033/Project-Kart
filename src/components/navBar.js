@@ -10,7 +10,13 @@ import {
   LuShoppingBasket,
 } from "react-icons/lu";
 import { FiBook, FiInfo, FiUser, FiVoicemail } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 const NavBar = () => {
+  const navigate = useNavigate();
+  const navigateToUserProfile = ()=>{
+    navigate("/users/123")
+  }
+ 
   const items = [
     {
       label: "Home",
@@ -108,7 +114,12 @@ const NavBar = () => {
             mode="horizontal"
             items={items}
           />
-          <div style={{
+          <div 
+          
+          onClick={()=>{
+            navigateToUserProfile();
+          }}
+          style={{
             marginRight:"10px"
           }}>
           <Avatar
