@@ -3,6 +3,8 @@ import NotFoundPage from "../pages/notFound/NotFoundPage";
 import { Layout } from "antd";
 import HomePage from "../pages/home/homePage";
 import NavBar from "../components/navBar";
+import AllProductsPage from "../pages/allProducts/allProductsPage";
+import FooterWidget from "../components/footerWidget";
 
 const UserRoutes = () => {
   return (
@@ -14,11 +16,12 @@ const UserRoutes = () => {
      <div>
      <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/products" element={<AllProductsPage />} />
         {/* <Route path="/products/:productId" element={<ProductDetails />} /> */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
      </div>
-     {/* <FooterWidget/> */}
+     <FooterWidget />
     </Layout>
   );
 };

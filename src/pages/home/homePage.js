@@ -6,9 +6,15 @@ import ProductCard from "../../components/productCard";
 import FooterWidget from "../../components/footerWidget";
 import ProductShowCaseTile from "../../components/productShowCaseTile";
 import BlogPostCard from "../../components/blogPostCard";
+import { useNavigate } from "react-router-dom";
 // import { FooterWidget } from "../../components/footerWidget";
 const HomePage = () => {
   const [selectedFilter, setSelectedFilter] = useState("assignment");
+  const navigate = useNavigate();
+
+  const handleLoadMoreProduct = () => {
+    navigate("/products");
+  };
   var filterMenu = [
     {
       label: "All",
@@ -201,46 +207,52 @@ const HomePage = () => {
     },
   ];
 
-
   const blogs = [
     {
       id: "1",
-      title: "How can you find best blog for me and how you can How can you find best blog for me and how",
+      title:
+        "How can you find best blog for me and how you can How can you find best blog for me and how",
       tags: ["Tech", "Android"],
-      coverImage: "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg"
+      coverImage:
+        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
     },
     {
       id: "2",
       title: "Latest Trends in AI and Machine Learning",
       tags: ["Tech", "AI", "Machine Learning"],
-      coverImage: "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg"
+      coverImage:
+        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
     },
     {
       id: "3",
       title: "Top 10 Android Apps You Need to Try",
       tags: ["Tech", "Android", "Apps"],
-      coverImage: "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg"
+      coverImage:
+        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
     },
     {
       id: "4",
       title: "The Future of Cloud Computing",
       tags: ["Tech", "Cloud", "Innovation"],
-      coverImage: "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg"
+      coverImage:
+        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
     },
     {
       id: "5",
       title: "Blockchain: How It's Changing the World",
       tags: ["Tech", "Blockchain", "Crypto"],
-      coverImage: "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg"
+      coverImage:
+        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
     },
     {
       id: "6",
       title: "Web Development Trends in 2025",
       tags: ["Tech", "Web Development"],
-      coverImage: "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg"
-    }
+      coverImage:
+        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+    },
   ];
-  
+
   return (
     <Layout
       style={{
@@ -347,14 +359,14 @@ const HomePage = () => {
           </Row>
         </Col> */}
       </Row>
-      <Row className="body-container"  justify={"center"}>
+      <Row className="body-container" justify={"center"}>
         <Space
           style={{
             fontSize: "25px",
             fontWeight: "600",
           }}
         >
-         💹 Tranding Products
+          💹 Tranding Products
         </Space>
       </Row>
       <ProductShowCaseTile
@@ -388,7 +400,7 @@ const HomePage = () => {
             fontWeight: "600",
           }}
         >
-          All Products  🛒
+          All Products 🛒
         </Space>
       </Row>
       <Row className="body-container" style={{ width: "100%" }}>
@@ -426,10 +438,16 @@ const HomePage = () => {
       </Row>
       <Row className="body-container" justify={"center"}>
         <Space>
-         <Button>See more</Button>
+          <Button
+            onClick={() => {
+              handleLoadMoreProduct();
+            }}
+          >
+            See more
+          </Button>
         </Space>
       </Row>
-      
+
       <br></br>
       <Row className="body-container" justify={"center"}>
         <Space
@@ -438,22 +456,22 @@ const HomePage = () => {
             fontWeight: "600",
           }}
         >
-         BLOG POSTS 📝
+          BLOG POSTS 📝
         </Space>
       </Row>
       <Row gutter={[16, 16]} className="body-container">
         {blogs.map((blog) => (
-         <BlogPostCard blogs={blog}/>
+          <BlogPostCard blogs={blog} />
         ))}
       </Row>
       <Row className="body-container" justify={"center"}>
         <Space>
-         <Button>See more</Button>
+          <Button>See more</Button>
         </Space>
       </Row>
       <br></br>
-          <br></br>
-      <FooterWidget />
+      <br></br>
+    
     </Layout>
   );
 };

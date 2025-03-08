@@ -1,0 +1,91 @@
+  /* Banner at the top */
+  .layout-banner {
+    height: 200px;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    color: var(--light-color);
+    font-weight: 600;
+  }
+  
+  /* Left Column (Filter Box) */
+  .product-filter-box {
+    background-color: var(--background-color);
+    box-shadow: 0px 4px 10px rgba(175, 175, 175, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    height: fit-content;
+  }
+  
+  /* Filter Section Title */
+  .filter-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Horizontal Rule for Separation */
+  .filter-divider {
+    margin-top: 10px;
+    background-color: var(--primary-color);
+  }
+  
+  /* Form Style for Filters */
+  .ant-form-item {
+    margin-bottom: 20px;
+  }
+  
+  /* Right Column (Scrollable Products) */
+  .product-list {
+    /* height: calc(100vh - 200px); */
+    overflow-y: auto;
+    background-color: #f7f7f7;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  /* Product Card Container */
+  .product-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+  }
+  
+
+  
+  /* Responsive Styling */
+  @media (max-width: 1200px) {
+    .product-filter-box {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+
+  }
+  
+  @media (max-width: 768px) {
+    .product-filter-box {
+      margin-bottom: 20px;
+      padding: 10px;
+    }
+  
+   
+  }
+  
+  @media (max-width: 480px) {
+   
+    .product-filter-box {
+      padding: 5px;
+    }
+  
+    .filter-title {
+      font-size: 16px;
+    }
+  
+  }
+  
