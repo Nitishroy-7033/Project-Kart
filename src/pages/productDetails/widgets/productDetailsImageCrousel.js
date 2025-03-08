@@ -24,8 +24,6 @@ const ProductDetailsImageCrousel = ({ images }) => {
       <div className="arrow-button" onClick={scrollLeft}>
       <FiChevronLeft />
       </div>
-      
-      {/* Image Container */}
       <div className="image-container" ref={scrollContainerRef}>
         {images.map((imageUrl, index) => (
           <div key={index} className="image-item">
@@ -34,7 +32,6 @@ const ProductDetailsImageCrousel = ({ images }) => {
           </div>
         ))}
       </div>
-      
       <div className="arrow-button" onClick={scrollRight}>
       <FiChevronRight />
       </div>

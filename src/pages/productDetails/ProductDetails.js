@@ -3,6 +3,7 @@ import "../../App.css";
 import "./style.css";
 import { useParams } from "react-router-dom";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
+import ProductDetailsWidget from "./widgets/productDetailsSide"
 import ProductDetailsImageCrousel from "./widgets/productDetailsImageCrousel";
 const ProductDetails = () => {
   const { productId, productTitle } = useParams();
@@ -36,9 +37,7 @@ const ProductDetails = () => {
           <ProductDetailsImageCrousel images={product.imageUrls} />
         </Col>
 
-        <Col className="product-list" md={14} lg={14} xl={14} xxl={12}>
-          right side
-        </Col>
+    <ProductDetailsWidget/>
       </Row>
     </Layout>
   );

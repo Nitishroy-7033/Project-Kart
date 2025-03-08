@@ -16,6 +16,9 @@
 
 
 .squre-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 40px !important;
     height: 40px !important;
     background-color: var(--background-color) !important;
@@ -28,6 +31,25 @@
 }
 
 .squre-button:hover{
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
+.icon-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px !important;
+    height: 40px !important;
+    background-color: var(--background-color) !important;
+    border: 1px solid var(--primary-color) !important;
+    color: var(--primary-color) !important;
+    font-size: 1.3rem !important;
+    font-weight: 500 !important;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.icon-button:hover{
     background-color: var(--primary-color) !important;
     color: white !important;
 }
