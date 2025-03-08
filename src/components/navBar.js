@@ -5,9 +5,11 @@ import {
   LuFlower,
   LuFrame,
   LuGraduationCap,
+  LuInfo,
   LuPackageOpen,
   LuShoppingBasket,
 } from "react-icons/lu";
+import { FiBook, FiInfo, FiUser, FiVoicemail } from "react-icons/fi";
 const NavBar = () => {
   const items = [
     {
@@ -32,6 +34,29 @@ const NavBar = () => {
         },
       ],
     },
+    {
+      label: "Info",
+      key: "#",
+      icon: <FiInfo />,
+      children: [
+        {
+          label: "About us",
+          key: "/about-us",
+          icon: <FiUser />,
+        },
+        {
+          label: "Contact us",
+          key: "/contact-us",
+          icon: <FiVoicemail />,
+        },
+        {
+          label: "Privacy & Policy",
+          key: "/privacy-policy",
+          icon: <FiBook />,
+        },
+      ],
+    },
+  
   ];
   const itemss = [
     {
@@ -83,7 +108,19 @@ const NavBar = () => {
             mode="horizontal"
             items={items}
           />
-         
+          <div style={{
+            marginRight:"10px"
+          }}>
+          <Avatar
+                shape="square"
+                style={{
+                  cursor: "pointer",
+                  backgroundColor: "var(--secondary-color)",
+                }}
+                size="medium"
+                icon={<FiUser />}
+              />
+          </div>
           <Badge count={5} style={{}}>
             <Popover content={content} title="Cart items">
               <Avatar
