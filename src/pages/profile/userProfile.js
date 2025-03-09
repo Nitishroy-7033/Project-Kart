@@ -3,10 +3,20 @@ import "./style.css";
 
 import { Button, Col, Layout, Row } from "antd";
 import { MdOutlineAddChart } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
+  const navigate  = useNavigate();
+  const handleLogoutClick = ()=>{
+    navigate("/auth");
+     localStorage.removeItem("role");
+  }
   return (
-    <Layout className="body-container">
+    <Layout
+    style={{
+        height:"100vh"
+    }}
+    className="body-container">
       <br></br>
       <br></br>
       <br></br>
@@ -37,7 +47,9 @@ const UserProfile = () => {
           <Row style={{
             gap:'10px'
           }}>
-            <Button><TbLogout2/> Logout</Button>
+            <Button onClick={()=>{
+              handleLogoutClick()
+            }}><TbLogout2/> Logout</Button>
             <Button><MdOutlineAddChart/>  Post a Ads</Button>
           </Row>
         </Col>

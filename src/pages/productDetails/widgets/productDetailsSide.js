@@ -1,4 +1,4 @@
-import { Button, Col, Row, Space, Tooltip } from "antd";
+import { Button, Col, Rate, Row, Space, Tooltip } from "antd";
 import { BiStar } from "react-icons/bi";
 import { FaRupeeSign } from "react-icons/fa";
 import { FiHeart, FiPhoneCall, FiShoppingCart, FiSmile, FiStar } from "react-icons/fi";
@@ -81,11 +81,7 @@ const ProductDetailsWidget = ({ productDetails }) => {
 
       <Row justify={"space-between"} align={"middle"}>
       <Row style={{ gap: "5px" }}>
-        <FiStar size={"25"} />
-        <FiStar size={"25"} />
-        <FiStar size={"25"} />
-        <FiStar size={"25"} />
-        <FiStar size={"25"} />
+      <Rate disabled defaultValue={product.ratings} />
         <div
           style={{
             fontSize: "15px",

@@ -1,9 +1,12 @@
-import { Avatar, Button, Col, Row, Space } from "antd";
+import { Avatar, Button, Col, Modal, Rate, Row, Space } from "antd";
+import TextArea from "antd/es/input/TextArea";
+import { useState } from "react";
 import { AiFillEdit } from "react-icons/ai";
 import { FaStar } from "react-icons/fa";
 import { FiStar } from "react-icons/fi";
 
 const ProductReviewSection = () => {
+  const [isReviewBoxOpened, setIsReviewBoxOpende] = useState(false);
   var reviews = [
     {
       name: "Nitish Kumar",
@@ -158,7 +161,14 @@ const ProductReviewSection = () => {
         >
           Reviews ⭐
         </Space>
-        <Button><AiFillEdit />Write review</Button>
+        <Button
+          onClick={() => {
+            setIsReviewBoxOpende(true);
+          }}
+        >
+          <AiFillEdit />
+          Write review
+        </Button>
       </Row>
       <br></br>
       <Col>
@@ -176,20 +186,50 @@ const ProductReviewSection = () => {
               </Space>
             </Row>
             <Row
-            align={"middle"}
+              align={"middle"}
               style={{
                 gap: "10px",
-                margin:"10px 0px",
-                fontSize:"18px"
+                margin: "10px 0px",
+                fontSize: "18px",
               }}
             >
-              <FaStar color="orange" size={"20"} />{e.rating}
+              <FaStar color="orange" size={"20"} />
+              {e.rating}
             </Row>
             <Space>{e.dateTime}</Space>
             <Space>{e.description}</Space>
           </Col>
         ))}
       </Col>
+      <Modal
+        title="Write a Review"
+        open={isReviewBoxOpened}
+        onCancel={() => {
+          setIsReviewBoxOpende(false);
+        }}
+        afterClose={() => {
+          setIsReviewBoxOpende(false);
+        }}
+      >
+        <Col>
+          <Row justify={"center"}>
+            <Rate
+              style={{
+                fontSize: "30px",
+              }}
+              allowHalf
+              defaultValue={2.5}
+            />
+          </Row>
+          <Row>
+            <Space>Message</Space>
+          </Row>
+          <br></br>
+          <Row>
+            <TextArea rows={4} placeholder="Write your experiance here.." maxLength={6} />
+          </Row>
+        </Col>
+      </Modal>
     </Col>
   );
 };
