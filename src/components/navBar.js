@@ -11,12 +11,16 @@ import {
 } from "react-icons/lu";
 import { FiBook, FiInfo, FiUser, FiVoicemail } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import CartDrawer from "./cartDrawer";
 const NavBar = () => {
   const navigate = useNavigate();
+  const [isCartDrawerOpen,setIsCartDrawerOpen] = useState(false);
   const navigateToUserProfile = ()=>{
     navigate("/users/123")
   }
- 
+ const openCartDrawer = ()=>{
+  setIsCartDrawerOpen(true)
+ }
   const items = [
     {
       label: "Home",
@@ -134,7 +138,10 @@ const NavBar = () => {
           </div>
           <Badge count={5} style={{}}>
             <Popover content={content} title="Cart items">
-              <Avatar
+              <Avatar 
+              onClick={()=>{
+                openCartDrawer();
+              }}
                 shape="square"
                 style={{
                   cursor: "pointer",
@@ -147,6 +154,9 @@ const NavBar = () => {
           </Badge>
         </Row>
       </Row>
+      <CartDrawer isOpen={isCartDrawerOpen} onClose={()=>{
+        setIsCartDrawerOpen(false)
+      }} />
     </Row>
   );
 };
