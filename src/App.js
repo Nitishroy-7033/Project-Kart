@@ -9,6 +9,7 @@ function App() {
   return (
     <Router>
       <Routes>
+        
         <Route path="/auth" element={<AuthPage />} />
         <Route element={<ProtectedRoute allowedRoles={["user"]} />}>
           <Route path="/*" element={<UserRoutes />} />
