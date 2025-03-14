@@ -18,6 +18,7 @@ const BlogPostCard = ({ onClick, blogs }) => {
           width: "100%",
           height: "340px",
           objectFit: "cover",
+         
         }}
       />
       <Row>
@@ -30,6 +31,7 @@ const BlogPostCard = ({ onClick, blogs }) => {
       <Space
         style={{
           fontSize: "18px",
+          padding: "20px",
         }}
       >
         {blogs.title}

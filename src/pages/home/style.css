@@ -41,12 +41,30 @@
 .product-main-box {
   padding: 0px 200px;
 }
+.product-card:hover {
+
+   filter: brightness(1.1); /* Increases brightness */
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); /* Adds shadow */
+  
+}
+.product-tile:hover {
+  transform: scale(1.02);
+  transition: transform 0.5s;
+}
+
 
 .round-home{
   height: 60px;
   width: 200px;
   background-color: var(--background-color);
   border-radius: 100px;
+}
+
+.blog-main-box:hover {
+  transform: scale(1.01);
+  transition: transform 0.5s;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); /* Adds shadow */
+
 }
 @keyframes colorFlow {
   0% {
