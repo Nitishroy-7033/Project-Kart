@@ -1,12 +1,10 @@
 import axios from "axios";
-import { BASE_URL } from "../../../configs/config";
-import { setLoding } from "./authSlice";
-import { useDispatch } from "react-redux";
+import { API_ENDPOINTS, STORAGE_KEYS } from "../../../configs/apiConfig";
 
 class AuthActions {
   async loginUser(email, password) {
     try {
-      const response = await axios.post(`http://localhost:5018/Auth/login`, {
+      const response = await axios.post(API_ENDPOINTS.LOGIN, {
         email: email,
         password: password,
       });
@@ -14,16 +12,18 @@ class AuthActions {
       if (response.data.success) {
         const { token, refreshToken, role, expires, issuedAt } =
           response.data.data;
-        localStorage.setItem("token", token);
-        localStorage.setItem("refreshToken", refreshToken);
-        localStorage.setItem("role", role);
-        localStorage.setItem("expires", expires);
-        localStorage.setItem("issuedAt", issuedAt);
+
+        localStorage.setItem(STORAGE_KEYS.TOKEN, token);
+        localStorage.setItem(STORAGE_KEYS.REFRESH_TOKEN, refreshToken);
+        localStorage.setItem(STORAGE_KEYS.ROLE, role);
+        localStorage.setItem(STORAGE_KEYS.EXPIRES, expires);
+        localStorage.setItem(STORAGE_KEYS.ISSUED_AT, issuedAt);
+
         console.log("✅ Login ", response.data.message);
         return {
           success: true,
           data: response.data,
-          message: "Login Success full",
+          message: "Login Successful",
           role: role,
         };
       } else {
@@ -44,7 +44,7 @@ class AuthActions {
 
   async registerUser(firstName, lastName, email, password) {
     try {
-      const response = await axios.post(`http://localhost:5018/Auth/register`, {
+      const response = await axios.post(API_ENDPOINTS.REGISTER, {
         firstName: firstName,
         lastName: lastName,
         email: email,
@@ -56,7 +56,7 @@ class AuthActions {
         return {
           success: true,
           data: response.data,
-          message: "account created",
+          message: "Account created",
         };
       } else {
         console.log("❌ Account Creation  ", response.data.message);
@@ -66,10 +66,10 @@ class AuthActions {
         };
       }
     } catch (error) {
-      console.error("Login error:", error.response?.data?.message || error);
+      console.error("Account creation error:", error.response?.data?.message || error);
       return {
         success: false,
-        message: error.response?.data?.message || "Login failed",
+        message: error.response?.data?.message || "Account creation failed",
       };
     }
   }
