@@ -21,7 +21,7 @@ import { BiArrowToLeft, BiLeftArrow } from "react-icons/bi";
 import { IoIosArrowBack } from "react-icons/io";
 const AuthPage = () => {
   const dispatch = useDispatch();
-  const { role, userName, userId, loading } = useSelector(
+  const { userName, userId, loading } = useSelector(
     (state) => state.auth
   );
 
@@ -43,7 +43,7 @@ const AuthPage = () => {
     const result = await AuthActions.loginUser(values.email, values.password);
     if (result.success) {
       setError(null);
-      if (role === "Seller" || role === "Admin") {
+      if (result.role === "Seller" ||result.role === "Admin") {
         navigation("/admin");
       } else {
         navigation("/");

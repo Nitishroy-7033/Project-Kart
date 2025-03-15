@@ -24,6 +24,7 @@ class AuthActions {
           success: true,
           data: response.data,
           message: "Login Success full",
+          role :role
         };
       } else {
         console.log("❌ Login ", response.data.message);
