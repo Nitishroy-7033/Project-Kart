@@ -24,10 +24,42 @@ class AuthActions {
           success: true,
           data: response.data,
           message: "Login Success full",
-          role :role
+          role: role,
         };
       } else {
         console.log("❌ Login ", response.data.message);
+        return {
+          success: false,
+          message: response.data.message,
+        };
+      }
+    } catch (error) {
+      console.error("Login error:", error.response?.data?.message || error);
+      return {
+        success: false,
+        message: error.response?.data?.message || "Login failed",
+      };
+    }
+  }
+
+  async registerUser(firstName, lastName, email, password) {
+    try {
+      const response = await axios.post(`http://localhost:5018/Auth/register`, {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+      });
+
+      if (response.data.success) {
+        console.log("✅ Account Creation ", response.data.message);
+        return {
+          success: true,
+          data: response.data,
+          message: "account created",
+        };
+      } else {
+        console.log("❌ Account Creation  ", response.data.message);
         return {
           success: false,
           message: response.data.message,

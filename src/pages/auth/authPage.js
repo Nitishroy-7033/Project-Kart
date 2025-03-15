@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { Form, Input, Button, Tabs, Typography, Space, Row } from "antd";
+import {
+  Form,
+  Input,
+  Button,
+  Tabs,
+  Typography,
+  Space,
+  Row,
+  message,
+} from "antd";
 import {
   UserOutlined,
   LockOutlined,
@@ -21,11 +30,28 @@ import { BiArrowToLeft, BiLeftArrow } from "react-icons/bi";
 import { IoIosArrowBack } from "react-icons/io";
 const AuthPage = () => {
   const dispatch = useDispatch();
-  const { userName, userId, loading } = useSelector(
-    (state) => state.auth
-  );
+  const [messageApi, contextHolder] = message.useMessage();
+  const key = "updatable";
+  const { userName, userId, loading } = useSelector((state) => state.auth);
+
+  const openMessage = () => {
+    messageApi.open({
+      key,
+      type: "loading",
+      content: "Loading...",
+    });
+    setTimeout(() => {
+      messageApi.open({
+        key,
+        type: "success",
+        content: "Loaded!",
+        duration: 2,
+      });
+    }, 1000);
+  };
 
   const [error, setError] = useState(null);
+  const [signupError, setSignupError] = useState(null);
 
   const changeRoleToAdmin = () => {
     dispatch(setRole("admin"));
@@ -40,23 +66,71 @@ const AuthPage = () => {
 
   const loginHandle = async (values) => {
     dispatch(setLoding(true));
+    messageApi.open({
+      key,
+      type: "loading",
+      content: "Checking Credential...",
+    });
     const result = await AuthActions.loginUser(values.email, values.password);
     if (result.success) {
       setError(null);
-      if (result.role === "Seller" ||result.role === "Admin") {
+      if (result.role === "Seller" || result.role === "Admin") {
         navigation("/admin");
       } else {
         navigation("/");
       }
+      messageApi.open({
+        key,
+        type: "success",
+        content: "Login Success",
+        duration: 2,
+      });
     } else {
       setError(result.message);
       console.log("Login Failed:", result.message);
+      messageApi.open({
+        key,
+        type: "error",
+        content: result.message,
+        duration: 2,
+      });
     }
     dispatch(setLoding(false));
   };
 
-  const registerHandle = (values) => {
+  const registerHandle = async (values) => {
     console.log("Register Data:", values);
+    dispatch(setLoding(true));
+    messageApi.open({
+      key,
+      type: "loading",
+      content: "Creating new account...",
+    });
+    const response = await AuthActions.registerUser(
+      values.firstName,
+      values.lastName,
+      values.email,
+      values.password
+    );
+    if (response.success) {
+      messageApi.open({
+        key,
+        type: "success",
+        content: "Created successfull",
+        duration: 2,
+      });
+      setActiveTab("login");
+      setSignupError(null);
+    } else {
+      setSignupError(response.message);
+      messageApi.open({
+        key,
+        type: "error",
+        content: response.message,
+        duration: 2,
+      });
+    }
+    dispatch(setLoding(false));
   };
   const handleHomePage = () => {
     navigation("/");
@@ -72,6 +146,7 @@ const AuthPage = () => {
         background: "#f0f2f5",
       }}
     >
+      {contextHolder}
       <div
         style={{
           width: 400,
@@ -159,15 +234,27 @@ const AuthPage = () => {
             </Title>
             <Form layout="vertical" onFinish={registerHandle}>
               <Form.Item
-                name="username"
+                name="firstName"
                 rules={[
-                  { required: true, message: "Please enter a username!" },
+                  { required: true, message: "Please enter a first name!" },
                 ]}
               >
                 <Input
                   size="large"
                   prefix={<UserOutlined />}
-                  placeholder="Username"
+                  placeholder="First Name"
+                />
+              </Form.Item>
+              <Form.Item
+                name="lastName"
+                rules={[
+                  { required: true, message: "Please enter a last name!" },
+                ]}
+              >
+                <Input
+                  size="large"
+                  prefix={<UserOutlined />}
+                  placeholder="Last Name"
                 />
               </Form.Item>
               <Form.Item
@@ -198,6 +285,14 @@ const AuthPage = () => {
                   placeholder="Password"
                 />
               </Form.Item>
+              <div
+                style={{
+                  color: "red",
+                  marginBottom: "10px",
+                }}
+              >
+                {signupError}
+              </div>
               <Form.Item>
                 <Row justify={"center"}>
                   <Button htmlType="submit"> Register </Button>

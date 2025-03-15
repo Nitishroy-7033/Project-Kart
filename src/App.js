@@ -18,7 +18,7 @@ function App() {
         <Route path="/auth" element={<AuthPage />} />
 
         {/* Public User Routes */}
-        <Route element={<ProtectedRoute allowedRoles={["User", "Admin", "Seller"]} />}>
+        <Route element={<ProtectedRoute allowedRoles={["User", "Admin", "Seller","Customer"]} />}>
           <Route path="/*" element={<UserRoutes />} />
         </Route>
 
