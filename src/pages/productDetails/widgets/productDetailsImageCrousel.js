@@ -27,7 +27,6 @@ const ProductDetailsImageCrousel = ({ images }) => {
       <div className="image-container" ref={scrollContainerRef}>
         {images.map((imageUrl, index) => (
           <div key={index} className="image-item">
-            {/* You can replace this with an <img> tag to show actual images */}
             <img src={imageUrl} alt={`product-image-${index}`} style={{ width: "100%", height: "100%" }} />
           </div>
         ))}

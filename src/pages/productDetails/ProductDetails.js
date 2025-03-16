@@ -70,7 +70,7 @@ const ProductDetails = () => {
       <br></br>
       <br></br>
       <Row justify="space-between">
-        <Col className="product-image-box" md={7} lg={7} xl={7} xxl={12}>
+        <Col className="product-image-box" md={10} lg={9} xl={9} xxl={12}>
           <img className="product-image" src={product.imageUrls[0]} />
           <ProductDetailsImageCrousel images={product.imageUrls} />
         </Col>
