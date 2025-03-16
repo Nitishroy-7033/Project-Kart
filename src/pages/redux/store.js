@@ -1,10 +1,15 @@
+// store.js - Simplified version
 import { configureStore } from "@reduxjs/toolkit";
-import { thunk } from "redux-thunk";
 import authReducer from "../../pages/auth/redux/authSlice";
+import homeReducer from "../../pages/home/redux/homeSlice";
+import { thunk } from "redux-thunk";
+
 const store = configureStore({
   reducer: {
     auth: authReducer,
+    home: homeReducer,
   },
+  // You can remove this line as thunk is included by default
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
 });
 

@@ -1,21 +1,44 @@
-import { Button, Col, Dropdown, Layout, Row, Select, Space } from "antd";
+import {
+  Button,
+  Col,
+  Dropdown,
+  Layout,
+  message,
+  Row,
+  Select,
+  Space,
+  Spin,
+} from "antd";
 import "./style.css";
 import "./../../App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductCard from "../../components/productCard";
 import FooterWidget from "../../components/footerWidget";
 import ProductShowCaseTile from "../../components/productShowCaseTile";
 import BlogPostCard from "../../components/blogPostCard";
 import { useNavigate } from "react-router-dom";
+import homeActions from "./redux/homeActions";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  productFetchFailure,
+  productFetchStart,
+  productFetchSuccess,
+} from "./redux/homeSlice";
 // import { FooterWidget } from "../../components/footerWidget";
 const HomePage = () => {
   const [selectedFilter, setSelectedFilter] = useState("assignment");
+  const [messageApi, contextHolder] = message.useMessage();
+
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { products, productLoading } = useSelector((state) => state.home);
+  useEffect(() => {
+    fetchProductsAsync();
+  }, []);
 
   const handleLoadMoreProduct = () => {
     navigate("/products");
   };
-
 
   var filterMenu = [
     {
@@ -39,175 +62,175 @@ const HomePage = () => {
       value: "research",
     },
   ];
-  const products = [
-    {
-      id: 1,
-      name: "Product 1",
-      price: 100,
-      imageUrls: [
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-      ],
-      isTranding: true,
-      ratings: 4.5,
-      reviews: 100,
-      sortDescription: "This is a product",
-      isLiked: false,
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      price: 200,
-      imageUrls: [
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-      ],
-      isTranding: true,
-      ratings: 4.5,
-      reviews: 100,
-      sortDescription: "This is a product",
-      isLiked: false,
-    },
-    {
-      id: 3,
-      name: "Product 3",
-      price: 300,
-      imageUrls: [
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-      ],
-      isTranding: true,
-      ratings: 4.5,
-      reviews: 100,
-      sortDescription: "This is a product",
-      isLiked: false,
-    },
-    {
-      id: 4,
-      name: "Product 4",
-      price: 400,
-      imageUrls: [
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-      ],
-      isTranding: true,
-      ratings: 4.5,
-      reviews: 100,
-      sortDescription: "This is a product",
-      isLiked: false,
-    },
-    {
-      id: 5,
-      name: "Product 5",
-      price: 500,
-      imageUrls: [
-        "https://th.bing.com/th/id/OIP.qFLJlBnH2xkl508yedA9pQHaFS?w=1600&h=1141&rs=1&pid=ImgDetMain",
-        "https://th.bing.com/th/id/OIP.qFLJlBnH2xkl508yedA9pQHaFS?w=1600&h=1141&rs=1&pid=ImgDetMain",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/f8db9894200401.5e78f0e37d1e4.png",
-      ],
-      isTranding: true,
-      ratings: 4.5,
-      reviews: 100,
-      sortDescription: "This is a product",
-      isLiked: false,
-    },
-    {
-      id: 3,
-      name: "Product 3",
-      price: 300,
-      imageUrls: [
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-      ],
-      isTranding: true,
-      ratings: 4.5,
-      reviews: 100,
-      sortDescription: "This is a product",
-      isLiked: false,
-    },
-    {
-      id: 4,
-      name: "Product 4",
-      price: 400,
-      imageUrls: [
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-      ],
-      isTranding: true,
-      ratings: 4.5,
-      reviews: 100,
-      sortDescription: "This is a product",
-      isLiked: false,
-    },
-    {
-      id: 5,
-      name: "Product 5",
-      price: 500,
-      imageUrls: [
-        "https://th.bing.com/th/id/OIP.qFLJlBnH2xkl508yedA9pQHaFS?w=1600&h=1141&rs=1&pid=ImgDetMain",
-        "https://th.bing.com/th/id/OIP.qFLJlBnH2xkl508yedA9pQHaFS?w=1600&h=1141&rs=1&pid=ImgDetMain",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/f8db9894200401.5e78f0e37d1e4.png",
-      ],
-      isTranding: true,
-      ratings: 4.5,
-      reviews: 100,
-      sortDescription: "This is a product",
-      isLiked: false,
-    },
-    {
-      id: 3,
-      name: "Product 3",
-      price: 300,
-      imageUrls: [
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-      ],
-      isTranding: true,
-      ratings: 4.5,
-      reviews: 100,
-      sortDescription: "This is a product",
-      isLiked: false,
-    },
-    {
-      id: 4,
-      name: "Product 4",
-      price: 400,
-      imageUrls: [
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-        "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
-      ],
-      isTranding: true,
-      ratings: 4.5,
-      reviews: 100,
-      sortDescription: "This is a product",
-      isLiked: false,
-    },
-    {
-      id: 5,
-      name: "Product 5",
-      price: 0,
-      imageUrls: [
-        "https://th.bing.com/th/id/OIP.qFLJlBnH2xkl508yedA9pQHaFS?w=1600&h=1141&rs=1&pid=ImgDetMain",
-        "https://th.bing.com/th/id/OIP.qFLJlBnH2xkl508yedA9pQHaFS?w=1600&h=1141&rs=1&pid=ImgDetMain",
-        "https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/f8db9894200401.5e78f0e37d1e4.png",
-      ],
-      isTranding: true,
-      ratings: 4.5,
-      reviews: 100,
-      sortDescription: "This is a product",
-      isLiked: false,
-    },
-  ];
+  // const products = [
+  //   {
+  //     id: 1,
+  //     name: "Product 1",
+  //     price: 100,
+  //     imageUrls: [
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //     ],
+  //     isTranding: true,
+  //     ratings: 4.5,
+  //     reviews: 100,
+  //     sortDescription: "This is a product",
+  //     isLiked: false,
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Product 2",
+  //     price: 200,
+  //     imageUrls: [
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //     ],
+  //     isTranding: true,
+  //     ratings: 4.5,
+  //     reviews: 100,
+  //     sortDescription: "This is a product",
+  //     isLiked: false,
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Product 3",
+  //     price: 300,
+  //     imageUrls: [
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //     ],
+  //     isTranding: true,
+  //     ratings: 4.5,
+  //     reviews: 100,
+  //     sortDescription: "This is a product",
+  //     isLiked: false,
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Product 4",
+  //     price: 400,
+  //     imageUrls: [
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //     ],
+  //     isTranding: true,
+  //     ratings: 4.5,
+  //     reviews: 100,
+  //     sortDescription: "This is a product",
+  //     isLiked: false,
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Product 5",
+  //     price: 500,
+  //     imageUrls: [
+  //       "https://th.bing.com/th/id/OIP.qFLJlBnH2xkl508yedA9pQHaFS?w=1600&h=1141&rs=1&pid=ImgDetMain",
+  //       "https://th.bing.com/th/id/OIP.qFLJlBnH2xkl508yedA9pQHaFS?w=1600&h=1141&rs=1&pid=ImgDetMain",
+  //       "https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/f8db9894200401.5e78f0e37d1e4.png",
+  //     ],
+  //     isTranding: true,
+  //     ratings: 4.5,
+  //     reviews: 100,
+  //     sortDescription: "This is a product",
+  //     isLiked: false,
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Product 3",
+  //     price: 300,
+  //     imageUrls: [
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //     ],
+  //     isTranding: true,
+  //     ratings: 4.5,
+  //     reviews: 100,
+  //     sortDescription: "This is a product",
+  //     isLiked: false,
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Product 4",
+  //     price: 400,
+  //     imageUrls: [
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //     ],
+  //     isTranding: true,
+  //     ratings: 4.5,
+  //     reviews: 100,
+  //     sortDescription: "This is a product",
+  //     isLiked: false,
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Product 5",
+  //     price: 500,
+  //     imageUrls: [
+  //       "https://th.bing.com/th/id/OIP.qFLJlBnH2xkl508yedA9pQHaFS?w=1600&h=1141&rs=1&pid=ImgDetMain",
+  //       "https://th.bing.com/th/id/OIP.qFLJlBnH2xkl508yedA9pQHaFS?w=1600&h=1141&rs=1&pid=ImgDetMain",
+  //       "https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/f8db9894200401.5e78f0e37d1e4.png",
+  //     ],
+  //     isTranding: true,
+  //     ratings: 4.5,
+  //     reviews: 100,
+  //     sortDescription: "This is a product",
+  //     isLiked: false,
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Product 3",
+  //     price: 300,
+  //     imageUrls: [
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //     ],
+  //     isTranding: true,
+  //     ratings: 4.5,
+  //     reviews: 100,
+  //     sortDescription: "This is a product",
+  //     isLiked: false,
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Product 4",
+  //     price: 400,
+  //     imageUrls: [
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //       "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg",
+  //     ],
+  //     isTranding: true,
+  //     ratings: 4.5,
+  //     reviews: 100,
+  //     sortDescription: "This is a product",
+  //     isLiked: false,
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Product 5",
+  //     price: 0,
+  //     imageUrls: [
+  //       "https://th.bing.com/th/id/OIP.qFLJlBnH2xkl508yedA9pQHaFS?w=1600&h=1141&rs=1&pid=ImgDetMain",
+  //       "https://th.bing.com/th/id/OIP.qFLJlBnH2xkl508yedA9pQHaFS?w=1600&h=1141&rs=1&pid=ImgDetMain",
+  //       "https://mir-s3-cdn-cf.behance.net/project_modules/1400_opt_1/f8db9894200401.5e78f0e37d1e4.png",
+  //     ],
+  //     isTranding: true,
+  //     ratings: 4.5,
+  //     reviews: 100,
+  //     sortDescription: "This is a product",
+  //     isLiked: false,
+  //   },
+  // ];
 
   const blogs = [
     {
@@ -255,17 +278,53 @@ const HomePage = () => {
     },
   ];
 
+  const fetchProductsAsync = async () => {
+    // Dispatch productFetchStart as a function
+    dispatch(productFetchStart());
+    console.log("loading", productLoading);
 
-  const handleProductClick=(product)=>{
+    try {
+      var response = await homeActions.fetchProductsAsync();
+      console.log("Home product response", response);
+
+      if (response.success) {
+        dispatch(productFetchSuccess(response.products));
+      } else {
+        dispatch(productFetchFailure(response.message));
+        messageApi.open({
+          type: "error",
+          content: response.message,
+          duration: 5,
+        });
+      }
+    } catch (error) {
+      dispatch(productFetchFailure(error.message));
+      messageApi.open({
+        type: "error",
+        content: error.message,
+        duration: 5,
+      });
+    }
+  };
+
+  const handlerContactusClick = () => {
+    console.log("Home page product", products);
+    products.products.map((e)=>{
+      console.log(e)
+    })
+  };
+
+  const handleProductClick = (product) => {
     navigate(`/products/${product.id}/${product.name}`);
     // console.log(product.id)
-  }
+  };
   return (
     <Layout
       style={{
         minHeight: "100vh",
       }}
     >
+      {contextHolder}
       <Row
         style={{
           height: "80vh", // 80% of the viewport height
@@ -288,7 +347,12 @@ const HomePage = () => {
           lg={24}
           xl={24}
         >
-          <Row justify="center">
+          <Row
+            justify="center"
+            onClick={() => {
+              handlerContactusClick();
+            }}
+          >
             <div className="live-button">
               <div className="circle"></div>
               Contact With Us
@@ -438,13 +502,27 @@ const HomePage = () => {
         </Col>
       </Row>
 
-        <Row gutter={[16, 16]} className="product-main-box">
-          {products.map((product) => (
-            <ProductCard key={product.id} onClick={()=>{
-              handleProductClick(product)
-            }} product={product} />
-          ))}
-        </Row>
+      <Row gutter={[16, 16]} className="product-main-box">
+        {productLoading ? (
+          <Col span={24} style={{ textAlign: "center" }}>
+            <Spin size="large" />
+          </Col>
+        ) : products.products && products.products.length > 0 ? (
+          products.products.map((product) => (
+            <ProductCard
+              key={product.id}
+              onClick={() => {
+                handleProductClick(product);
+              }}
+              product={product}
+            />
+          ))
+        ) : (
+          <Col span={24} style={{ textAlign: "center" }}>
+            No products found
+          </Col>
+        )}
+      </Row>
       <Row className="body-container" justify={"center"}>
         <Space>
           <Button
@@ -480,7 +558,6 @@ const HomePage = () => {
       </Row>
       <br></br>
       <br></br>
-    
     </Layout>
   );
 };

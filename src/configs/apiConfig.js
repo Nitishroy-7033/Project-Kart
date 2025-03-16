@@ -1,10 +1,10 @@
-const BASE_URL = "http://localhost:5018";
 
-
+export const BASE_URL = "http://localhost:5018";
 // Auth API Endpoints
 export const API_ENDPOINTS = {
     LOGIN: `${BASE_URL}/Auth/login`,
     REGISTER: `${BASE_URL}/Auth/register`,
+    PRODUCTS: `${BASE_URL}/products`,
   };
   
   // Local Storage Keys
