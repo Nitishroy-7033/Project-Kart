@@ -484,7 +484,7 @@ const HomePage = () => {
                 color: "var( --lable-color)",
               }}
             >
-              1-20 of 1000+ results for "project"
+              Total {products.totalProducts} Products We have ! 
             </Row>
             <Row>
               <Select
