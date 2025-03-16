@@ -1,10 +1,14 @@
-import { Col, Layout, Row, Space } from "antd";
+import { Col, Layout, message, Row, Space } from "antd";
 import "../../App.css";
 import "./style.css";
 import { useParams } from "react-router-dom";
 import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
 import ProductDetailsWidget from "./widgets/productDetailsSide"
 import ProductDetailsImageCrousel from "./widgets/productDetailsImageCrousel";
+import { useEffect } from "react";
+import productDetailsActions from "./redux/productDetailsActions";
+import { useDispatch, useSelector } from "react-redux";
+import { productDetailsFetchStart, productDetailsFetchSuccess } from "./redux/productDetailsSlice";
 const ProductDetails = () => {
   const { productId, productTitle } = useParams();
   const product = {
@@ -25,19 +29,52 @@ const ProductDetails = () => {
     sortDescription: "This is a product",
     isLiked: false,
   };
+
+  const dispatch = useDispatch();
+  const {productDetails,productLoading} = useSelector((state) => state.productDetails);
+  const [messageApi, contextHolder] = message.useMessage();
+
+  useEffect(() => {
+    getProductDetailsById();
+  }, [productId]);
+
+  const getProductDetailsById = async () => {
+    dispatch(productDetailsFetchStart()); 
+
+    try {
+      const response = await productDetailsActions.getProductDetailsById(productId);
+      console.log("Product Details Response:", response);
+
+      if (response.success) {
+        dispatch(productDetailsFetchSuccess(response.product.products[0])); // Update store
+      } else {
+        // dispatch(productFetchFailure(response.message));
+        messageApi.open({
+          type: "error",
+          content: response.message,
+          duration: 5,
+        });
+      }
+    } catch (error) {
+      // dispatch(productFetchFailure(error.message));
+      messageApi.open({
+        type: "error",
+        content: error.message,
+        duration: 5,
+      });
+    }
+  };
   return (
     <Layout className="body-container">
       <br></br>
       <br></br>
       <br></br>
-
       <Row justify="space-between">
         <Col className="product-image-box" md={7} lg={7} xl={7} xxl={12}>
           <img className="product-image" src={product.imageUrls[0]} />
           <ProductDetailsImageCrousel images={product.imageUrls} />
         </Col>
-
-    <ProductDetailsWidget/>
+       <ProductDetailsWidget/>
       </Row>
     </Layout>
   );

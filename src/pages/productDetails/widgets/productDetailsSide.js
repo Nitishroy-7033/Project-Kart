@@ -6,8 +6,9 @@ import ProductReviewSection from "./productReview";
 import SellerInformationSection from "./sellerInformationSection";
 import RelatedProductSection from "./relatedProductSection";
 import ProductDescriptionSection from "./productDescriptionSection";
+import { useDispatch, useSelector } from "react-redux";
 
-const ProductDetailsWidget = ({ productDetails }) => {
+const ProductDetailsWidget = ({  }) => {
   const techColors = [
     "#f34f29",
     "#3572A5",
@@ -62,7 +63,8 @@ const ProductDetailsWidget = ({ productDetails }) => {
       "User Dashboard",
     ],
   };
-
+  const dispatch = useDispatch();
+  const {productDetails,productLoading} = useSelector((state) => state.productDetails);
   return (
     <Col
       align="start"
@@ -73,22 +75,23 @@ const ProductDetailsWidget = ({ productDetails }) => {
       xxl={12}
     >
       <Space
+ 
       style={{
         fontSize:"30px",
         fontWeight:"500"
       }}
-      >{product.name}</Space>
+      >{productDetails.title}</Space>
 
       <Row justify={"space-between"} align={"middle"}>
       <Row style={{ gap: "5px" }}>
-      <Rate disabled defaultValue={product.ratings} />
+      <Rate disabled defaultValue={productDetails.averageRating} />
         <div
           style={{
             fontSize: "15px",
             fontWeight: "500",
           }}
         >
-          {product.ratings} ({product.reviews}+ Reviews)
+          {productDetails.averageRating} ({123}+ Reviews)
         </div>
       </Row>
       <div  className="squre-button">
@@ -107,7 +110,7 @@ const ProductDetailsWidget = ({ productDetails }) => {
                 fontWeight: "bold",
               }}
             >
-              {product.price}/-
+              {productDetails.finalPrice}/-
             </span>
           </Row>
           <Row
@@ -116,7 +119,7 @@ const ProductDetailsWidget = ({ productDetails }) => {
               fontWeight: "400",
             }}
           >
-            M.R.P. : <del> Rs. 2000</del>
+            M.R.P. : <del> Rs. {productDetails.mrpPrice}</del>
           </Row>
         </Col>
       </Row>

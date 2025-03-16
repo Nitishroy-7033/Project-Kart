@@ -315,7 +315,7 @@ const HomePage = () => {
   };
 
   const handleProductClick = (product) => {
-    navigate(`/products/${product.id}/${product.name}`);
+    navigate(`/products/${product.id}/${product.title}`);
     // console.log(product.id)
   };
   return (
