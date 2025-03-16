@@ -3,6 +3,7 @@ import NotFoundPage from "../pages/notFound/NotFoundPage";
 import AdminLayout from "../layout/adminLayout";
 import { Layout, Menu } from "antd";
 import Sider from "antd/es/layout/Sider";
+import "./style.css";
 import {
   AppstoreOutlined,
   BarChartOutlined,
@@ -33,7 +34,9 @@ const AdminRoutes = () => {
   }));
   return (
     <Layout>
-      <Sider>
+      <Sider width={"25   0"} style={{
+        padding:"10px"
+      }}>
         <div className="demo-logo-vertical" />
         <Menu
           theme="dark"

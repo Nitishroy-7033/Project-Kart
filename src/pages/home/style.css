@@ -38,9 +38,7 @@
     -1px -1px 10px rgba(119, 119, 119, 0.2), 1px 1px 10px rgba(0, 0, 0, 0.3);
 }
 
-.product-main-box {
-  padding: 0px 200px;
-}
+
 .product-card:hover {
 
    filter: brightness(1.1); /* Increases brightness */

@@ -502,7 +502,7 @@ const HomePage = () => {
         </Col>
       </Row>
 
-      <Row gutter={[16, 16]} className="product-main-box">
+      <Row gutter={[16, 16]} className="body-container">
         {productLoading ? (
           <Col span={24} style={{ textAlign: "center" }}>
             <Spin size="large" />

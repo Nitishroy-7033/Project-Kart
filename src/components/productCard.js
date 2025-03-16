@@ -6,7 +6,7 @@ const ProductCard = ({ product, onClick }) => {
   // const priceColor = product.price === 0 ? theme.greenColor : theme.text;
 
   return (
-    <Col onClick={onClick} key={product.id} md={9} lg={8} xl={9} xxl={8}>
+    <Col onClick={onClick} key={product.id} md={9} lg={8} xl={8} xxl={8}>
       <div
         className="product-card"
         style={{
