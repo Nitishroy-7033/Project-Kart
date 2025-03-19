@@ -1,73 +1,57 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import NotFoundPage from "../pages/notFound/NotFoundPage";
-import AdminLayout from "../layout/adminLayout";
 import { Layout, Menu } from "antd";
-import Sider from "antd/es/layout/Sider";
-import "./style.css";
-import {
-  AppstoreOutlined,
-  BarChartOutlined,
-  CloudOutlined,
-  ShopOutlined,
-  TeamOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
 import React from "react";
-import { Content, Footer, Header } from "antd/es/layout/layout";
+import "./style.css"
+import { TbLayoutDashboardFilled } from "react-icons/tb";
+import { HiShoppingCart } from "react-icons/hi";
+import { HiOutlineDocumentArrowDown } from "react-icons/hi2";
+import AdminProductsPage from "../admin/pages/products/adminProductsPage";
+
+const { Content, Footer, Header, Sider } = Layout;
 
 const AdminRoutes = () => {
-  const items = [
-    UserOutlined,
-    VideoCameraOutlined,
-    UploadOutlined,
-    BarChartOutlined,
-    CloudOutlined,
-    AppstoreOutlined,
-    TeamOutlined,
-    ShopOutlined,
-  ].map((icon, index) => ({
-    key: String(index + 1),
-    icon: React.createElement(icon),
-    label: `nav ${index + 1}`,
-  }));
+  const navigate = useNavigate(); // Hook for navigation
+
+  const menu = [
+    { key: "dashboard", icon: <TbLayoutDashboardFilled />, label: "Dashboard", path: "/admin/dashboard" },
+    { key: "products", icon: <HiShoppingCart />, label: "Products", path: "/admin/products" },
+    { key: "orders", icon: <HiOutlineDocumentArrowDown />, label: "Orders", path: "/admin/orders" },
+  ];
+
   return (
     <Layout>
-      <Sider width={"25   0"} style={{
-        padding:"10px"
-      }}>
+      {/* Sticky Sidebar */}
+      <Sider width={200} className="admin-sider">
         <div className="demo-logo-vertical" />
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={["4"]}
-          items={items}
+          defaultSelectedKeys={["dashboard"]}
+          onClick={({ key }) => {
+            const selectedMenu = menu.find((item) => item.key === key);
+            if (selectedMenu) {
+              navigate(selectedMenu.path);
+            }
+          }}
+          items={menu}
         />
       </Sider>
-      <Layout>
-        <Header
-          style={{
-            padding: 0,
-          }}
-        />
-        <Content
-          style={{
-            margin: "24px 16px 0",
-            overflow: "initial",
-          }}
-        >
+
+      {/* Main Layout: Shifted to the right of the sidebar */}
+      <Layout className="admin-layout">
+        <Header className="admin-header" />
+
+        {/* Scrollable Content */}
+        <Content className="admin-content">
           <Routes>
-            {/* <Route path="/admin" element={<DashboardPage />} /> */}
-            {/* <Route path="/admin/users" element={<UsersPage />} /> */}
+            <Route path="/products" element={<AdminProductsPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Content>
-        <Footer
-          style={{
-            textAlign: "center",
-          }}
-        >
+
+        {/* Footer */}
+        <Footer className="admin-footer">
           Ant Design ©{new Date().getFullYear()} Created by Ant UED
         </Footer>
       </Layout>

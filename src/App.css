@@ -51,7 +51,7 @@
 
 .icon-button:hover{
     background-color: var(--primary-color) !important;
-    color: white !important;
+    color: var(--primary-container) !important;
 }
 
 .body-container{

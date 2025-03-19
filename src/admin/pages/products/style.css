@@ -1,0 +1,8 @@
+.table-header-button-container{
+    background-color: var(--primary-container);
+    padding: 10px;
+    /* height: 80px; */
+    border-radius: 10px;
+    margin-bottom: 10px;
+    gap: 20px;
+}

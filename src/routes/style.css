@@ -1,5 +1,44 @@
-.demo-logo-vertical{
+/* Sidebar (Sider) Styling */
+.admin-sider {
+    width: 200px; /* Sidebar width */
+    overflow: auto;
+    height: 100vh; /* Full height */
+    position: fixed; /* Makes it sticky */
+    left: 0; /* Stick to left */
+    top: 0; /* Stick to top */
+    bottom: 0; /* Stick to bottom */
+    background-color: #001529; /* Dark theme for sidebar */
+  }
+  
+  /* Logo Section */
+  .demo-logo-vertical {
     height: 100px;
-    width: 100%;
-    background-color: rebeccapurple;
-}
+    background-color: var(--primary-container);
+    margin: 10px;
+    border-radius: 10px;
+  }
+  
+  /* Push main layout to the right of the sidebar */
+  .admin-layout {
+    margin-left: 200px; /* Same as sidebar width */
+    width: calc(100% - 200px); /* Ensure it fills the remaining space */
+  }
+  
+  /* Header Styling */
+  .admin-header {
+    padding: 0;
+    background: var(--primary-container);
+  }
+  
+  /* Scrollable Content */
+  .admin-content {
+    padding: 24px;
+    overflow-y: auto; /* Enable vertical scrolling */
+    min-height: calc(100vh - 64px - 70px); /* Adjust based on header & footer height */
+  }
+  
+  /* Footer Styling */
+  .admin-footer {
+    text-align: center;
+  }
+  
