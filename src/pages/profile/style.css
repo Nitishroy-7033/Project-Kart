@@ -4,3 +4,34 @@
     background-color: var(--light-color);
     border-radius: 10px;
 }
+
+
+.order-item-box{
+    padding: 10px;
+    background-color: var(--primary-container);
+    /* height: 200px; */
+    margin: 15px 0px;
+    border-radius: 10px;
+}
+
+.order-item-img {
+    width: 100%; /* Image scales with screen */
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block; /* Prevents unwanted space */
+    border-radius: 10px;
+}
+
+.order-item-img-container {
+    width: 50%; /* Change this to adjust the image size */
+    max-width: 400px; /* Prevents image from getting too large */
+    aspect-ratio: 16/9;
+    overflow: hidden;
+}
+
+.order-item-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
