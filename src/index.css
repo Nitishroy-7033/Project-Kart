@@ -109,6 +109,20 @@ p {
   font-weight: 300;
 }
 
+.lable-heading{
+  font-size: 1.0rem;
+  font-weight: 600;
+  color:var(--lable-color) ;
+}
+
+.vertical-margin-5{
+  margin: 10px 0px;
+}
+.lable-body{
+  font-size: 0.9rem;
+  font-weight: 500;
+  color:var(--lable-color) ;
+}
 /* Responsive Padding for Different Screens */
 .container {
   padding: 20px;

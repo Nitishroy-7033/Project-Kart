@@ -9,6 +9,7 @@ import ProductDetails from "../pages/productDetails/ProductDetails";
 import UserProfile from "../pages/profile/userProfile";
 import Preloader from "../components/preloader";
 import { useEffect, useState } from "react";
+import CartPage from "../pages/cartPage/cartPage";
 
 const UserRoutes = () => {
   const [loading, setLoading] = useState(true);
@@ -31,6 +32,7 @@ const UserRoutes = () => {
           <Route path="/products" element={<AllProductsPage />} />
           <Route path="/users/:userId" element={<UserProfile />} />
           <Route path="/products/:productId/:productTitle" element={<ProductDetails />} />
+          <Route path="/cart" element={<CartPage/>}/>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
