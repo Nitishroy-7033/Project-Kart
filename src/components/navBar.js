@@ -102,7 +102,9 @@ const NavBar = () => {
   return (
     <Row justify={"center"} align={"middle"} className="nav-bar-top">
       <Row className="nav-bar" align={"middle"} justify={"space-between"}>
-        <div className="logo">PROJECTS KART</div>
+        <div onClick={()=>{
+           navigate("/")
+        }} className="logo">PROJECTS KART</div>
         <Row
           align={"middle"}
           justify={"end"}
