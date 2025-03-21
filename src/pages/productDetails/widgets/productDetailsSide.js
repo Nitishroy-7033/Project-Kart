@@ -1,14 +1,20 @@
 import { Button, Col, Rate, Row, Space, Tooltip } from "antd";
 import { BiStar } from "react-icons/bi";
 import { FaRupeeSign } from "react-icons/fa";
-import { FiHeart, FiPhoneCall, FiShoppingCart, FiSmile, FiStar } from "react-icons/fi";
+import {
+  FiHeart,
+  FiPhoneCall,
+  FiShoppingCart,
+  FiSmile,
+  FiStar,
+} from "react-icons/fi";
 import ProductReviewSection from "./productReview";
 import SellerInformationSection from "./sellerInformationSection";
 import RelatedProductSection from "./relatedProductSection";
 import ProductDescriptionSection from "./productDescriptionSection";
 import { useDispatch, useSelector } from "react-redux";
 
-const ProductDetailsWidget = ({  }) => {
+const ProductDetailsWidget = ({}) => {
   const techColors = [
     "#f34f29",
     "#3572A5",
@@ -64,7 +70,9 @@ const ProductDetailsWidget = ({  }) => {
     ],
   };
   const dispatch = useDispatch();
-  const {productDetails,productLoading} = useSelector((state) => state.productDetails);
+  const { productDetails, productLoading } = useSelector(
+    (state) => state.productDetails
+  );
   return (
     <Col
       align="start"
@@ -75,30 +83,30 @@ const ProductDetailsWidget = ({  }) => {
       xxl={12}
     >
       <Space
- 
-      style={{
-        fontSize:"30px",
-        fontWeight:"500"
-      }}
-      >{productDetails.title}</Space>
+        style={{
+          fontSize: "30px",
+          fontWeight: "500",
+        }}
+      >
+        {productDetails.title}
+      </Space>
 
       <Row justify={"space-between"} align={"middle"}>
-      <Row style={{ gap: "5px" }}>
-      <Rate disabled defaultValue={productDetails.averageRating} />
-        <div
-          style={{
-            fontSize: "15px",
-            fontWeight: "500",
-          }}
-        >
-          {productDetails.averageRating} ({123}+ Reviews)
+        <Row style={{ gap: "5px" }}>
+          <Rate disabled defaultValue={productDetails.averageRating} />
+          <div
+            style={{
+              fontSize: "15px",
+              fontWeight: "500",
+            }}
+          >
+            {productDetails.averageRating} ({123}+ Reviews)
+          </div>
+        </Row>
+        <div className="squre-button">
+          <FiHeart />
         </div>
       </Row>
-      <div  className="squre-button">
-          <FiHeart/>
-
-      </div>
-        </Row>
 
       <Row style={{ marginTop: "10px" }}>
         <Col>
@@ -156,7 +164,7 @@ const ProductDetailsWidget = ({  }) => {
                     width: "15px",
                     height: "15px",
                     borderRadius: "50%",
-                    backgroundColor:"var(--primary-color)"
+                    backgroundColor: "var(--primary-color)",
                   }}
                 ></div>
                 {feature}
@@ -184,7 +192,7 @@ const ProductDetailsWidget = ({  }) => {
                     width: "15px",
                     height: "15px",
                     borderRadius: "50%",
-                    backgroundColor:"var(--primary-color)"
+                    backgroundColor: "var(--primary-color)",
                   }}
                 ></div>
                 {feature}
@@ -225,21 +233,26 @@ const ProductDetailsWidget = ({  }) => {
       </Row>
       <br></br>
       <Row align={"middle"} style={{ gap: "20px" }}>
-       <Button className="buy-button"> <FiSmile size={25} color="yellow" /> Buy Now</Button>
-       <Button className="add-to-cart-button"><FiShoppingCart size={20} />  Add To Cart</Button>
-       <Tooltip title={"Contact with seller"}>
-       <div className="icon-button"> <FiPhoneCall /></div>
-       </Tooltip>
+        <Button className="buy-button">
+          {" "}
+          <FiSmile size={25} color="yellow" /> Buy Now
+        </Button>
+        <Button className="add-to-cart-button">
+          <FiShoppingCart size={20} /> Add To Cart
+        </Button>
+        <Tooltip title={"Contact with seller"}>
+          <Button className="squre-button" icon={<FiPhoneCall />} />
+        </Tooltip>
       </Row>
 
       <br></br>
-      <ProductDescriptionSection/>
+      <ProductDescriptionSection />
       <br></br>
-      <RelatedProductSection/>
+      <RelatedProductSection />
       <br></br>
-      <SellerInformationSection/>
+      <SellerInformationSection />
       <br></br>
-      <ProductReviewSection/>
+      <ProductReviewSection />
     </Col>
   );
 };
