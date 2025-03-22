@@ -1,0 +1,15 @@
+.sk-product-image{
+        width: 100% !important;
+        height: 300px !important;
+        margin-bottom: 10px;
+}
+
+.sk-text{
+        height: 30px !important;
+}
+
+.sk-trending-image
+{
+        width: 90% !important;
+        height: 450px !important;
+}

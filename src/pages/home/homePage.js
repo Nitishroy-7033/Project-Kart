@@ -24,6 +24,8 @@ import {
   productFetchStart,
   productFetchSuccess,
 } from "./redux/homeSlice";
+import ProductCartSkeleton from "../../skeleton/productCartSkeleton";
+import ProductShowCaseTileSkeleton from "../../skeleton/productShowCaseTileSkeleton";
 // import { FooterWidget } from "../../components/footerWidget";
 const HomePage = () => {
   const [selectedFilter, setSelectedFilter] = useState("assignment");
@@ -463,7 +465,7 @@ const HomePage = () => {
         title={"School Management System"}
         tags={"Tranding+Sell"}
       />
-
+    <ProductShowCaseTileSkeleton isLoading={true} isPrimary={false}/>
       <Row className="body-container" justify={"center"}>
         <Space
           style={{
@@ -504,9 +506,14 @@ const HomePage = () => {
 
       <Row gutter={[16, 16]} className="body-container">
         {productLoading ? (
-          <Col span={24} style={{ textAlign: "center" }}>
-            <Spin size="large" />
-          </Col>
+          <>
+           <ProductCartSkeleton isLoading={productLoading}/>
+            <ProductCartSkeleton isLoading={productLoading}/>
+            <ProductCartSkeleton isLoading={productLoading}/>
+           <ProductCartSkeleton isLoading={productLoading}/>
+            <ProductCartSkeleton isLoading={productLoading}/>
+            <ProductCartSkeleton isLoading={productLoading}/>
+          </>
         ) : products.products && products.products.length > 0 ? (
           products.products.map((product) => (
             <ProductCard
