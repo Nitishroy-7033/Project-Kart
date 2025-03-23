@@ -13,8 +13,12 @@ import SellerInformationSection from "./sellerInformationSection";
 import RelatedProductSection from "./relatedProductSection";
 import ProductDescriptionSection from "./productDescriptionSection";
 import { useDispatch, useSelector } from "react-redux";
+import { addCartItem } from "../../cartPage/redux/cartSlice";
+import { useEffect, useState } from "react";
+import { MdCheckBox } from "react-icons/md";
 
 const ProductDetailsWidget = ({}) => {
+  const [inCart,setInCart] = useState(false);
   const techColors = [
     "#f34f29",
     "#3572A5",
@@ -70,9 +74,27 @@ const ProductDetailsWidget = ({}) => {
     ],
   };
   const dispatch = useDispatch();
+  
+  useEffect(()=>{
+    const existingItem = cartItems.find((item) => item.id === productDetails.id);
+      if (existingItem) {
+        setInCart(true);
+      } else {
+        console.log("Product added to cart:");
+        setInCart(false);
+      }
+  })
+
   const { productDetails, productLoading } = useSelector(
     (state) => state.productDetails
   );
+  const { cartItems } = useSelector(
+    (state) => state.cart
+  );
+
+  const addCartItemHandle = ()=>{
+    dispatch(addCartItem(productDetails))
+  }
   return (
     <Col
       align="start"
@@ -234,12 +256,17 @@ const ProductDetailsWidget = ({}) => {
       <br></br>
       <Row align={"middle"} style={{ gap: "20px" }}>
         <Button className="buy-button">
-          {" "}
           <FiSmile size={25} color="yellow" /> Buy Now
         </Button>
-        <Button className="add-to-cart-button">
+        {
+          inCart ? <Button  className="add-to-cart-button">
+          <MdCheckBox size={20} /> CheckOut
+        </Button>
+        :
+        <Button onClick={addCartItemHandle}  className="add-to-cart-button">
           <FiShoppingCart size={20} /> Add To Cart
         </Button>
+        }
         <Tooltip title={"Contact with seller"}>
           <Button className="squre-button" icon={<FiPhoneCall />} />
         </Tooltip>

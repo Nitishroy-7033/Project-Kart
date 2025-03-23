@@ -3,9 +3,11 @@ import "./style.css";
 import { CgAdd, CgRemove } from "react-icons/cg";
 import { MdDone } from "react-icons/md";
 import { BiMinus, BiPlus, BiRupee } from "react-icons/bi";
+import { useSelector } from "react-redux";
 const { Layout, message, Row, Col, Divider, Button, Space } = require("antd");
 const CartPage = () => {
   const [messageApi, contextHolder] = message.useMessage();
+  const { cartItems } = useSelector((state) => state.cart);
   const products = [
     {
       id: 1,
@@ -197,7 +199,7 @@ const CartPage = () => {
           <Row className="body-heading">Cart Items</Row>
           <Divider />
           <Col>
-            {products.map((e) => (
+            {cartItems.map((e) => (
               <Row
                 align={"middle"}
                 justify={"space-between"}
@@ -211,8 +213,9 @@ const CartPage = () => {
                   <img
                     style={{
                       width: "70px",
+                      height:"70px"
                     }}
-                    src={e.imageUrls[0]}
+                    src={""}
                   />
                   <Col
                     style={{
@@ -224,7 +227,7 @@ const CartPage = () => {
                         fontSize: "18px",
                       }}
                     >
-                      {e.name}
+                      {e.title}
                     </Row>
                     <Row
                       style={{
@@ -232,7 +235,7 @@ const CartPage = () => {
                         fontWeight: "600",
                       }}
                     >
-                      ${e.price}
+                      ${e.finalPrice}
                     </Row>
                   </Col>
                 </Row>

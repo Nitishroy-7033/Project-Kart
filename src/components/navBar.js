@@ -1,4 +1,14 @@
-import { Avatar, Badge, Dropdown, Menu, Popover, Row, Space } from "antd";
+import {
+  Avatar,
+  Badge,
+  Button,
+  Col,
+  Dropdown,
+  Menu,
+  Popover,
+  Row,
+  Space,
+} from "antd";
 import "./style.css";
 import { useState } from "react";
 import {
@@ -12,15 +22,21 @@ import {
 import { FiBook, FiInfo, FiUser, FiVoicemail } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import CartDrawer from "./cartDrawer";
+import { useSelector } from "react-redux";
+import { CgProductHunt } from "react-icons/cg";
 const NavBar = () => {
   const navigate = useNavigate();
-  const [isCartDrawerOpen,setIsCartDrawerOpen] = useState(false);
-  const navigateToUserProfile = ()=>{
-    navigate("/users/123")
-  }
- const openCartDrawer = ()=>{
-  setIsCartDrawerOpen(true)
- }
+  const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
+  const { cartItems } = useSelector((state) => state.cart);
+
+  const navigateToUserProfile = () => {
+    navigate("/users/123");
+  };
+  const openCartDrawer = () => {
+    if (cartItems.length > 0) {
+      setIsCartDrawerOpen(true);
+    }
+  };
   const items = [
     {
       label: "Home",
@@ -66,7 +82,6 @@ const NavBar = () => {
         },
       ],
     },
-  
   ];
   const itemss = [
     {
@@ -98,13 +113,45 @@ const NavBar = () => {
     console.log("click ", e);
     setCurrent(e.key);
   };
-  const content = <div>Your cart is empty</div>;
+  const content = (
+    <Col>
+      {cartItems.length > 0 ? (
+        <Col>
+          {cartItems.map((e) => (
+            <Row style={{
+              marginBottom:"10px"
+            }}>
+              <Row align={"middle"} style={{ gap: "10px" }}>
+                <Avatar
+                  shape="square"
+                  style={{
+                    cursor: "pointer",
+                    backgroundColor: "var(--primary-color)",
+                  }}
+                  size="medium"
+                  icon={<LuShoppingBasket />}
+                />{" "}
+                <div>{e.title}</div>
+              </Row>
+            </Row>
+          ))}
+        </Col>
+      ) : (
+        <div>Your cart is empty</div>
+      )}
+    </Col>
+  );
   return (
     <Row justify={"center"} align={"middle"} className="nav-bar-top">
       <Row className="nav-bar" align={"middle"} justify={"space-between"}>
-        <div onClick={()=>{
-           navigate("/")
-        }} className="logo">PROJECTS KART</div>
+        <div
+          onClick={() => {
+            navigate("/");
+          }}
+          className="logo"
+        >
+          PROJECTS KART
+        </div>
         <Row
           align={"middle"}
           justify={"end"}
@@ -120,30 +167,30 @@ const NavBar = () => {
             mode="horizontal"
             items={items}
           />
-          <div 
-          
-          onClick={()=>{
-            navigateToUserProfile();
-          }}
-          style={{
-            marginRight:"10px"
-          }}>
-          <Avatar
-                shape="square"
-                style={{
-                  cursor: "pointer",
-                  backgroundColor: "var(--secondary-color)",
-                }}
-                size="medium"
-                icon={<FiUser />}
-              />
-          </div>
-          <Badge count={5} style={{}}>
-            <Popover content={content} title="Cart items">
-              <Avatar 
-              onClick={()=>{
-                openCartDrawer();
+          <div
+            onClick={() => {
+              navigateToUserProfile();
+            }}
+            style={{
+              marginRight: "10px",
+            }}
+          >
+            <Avatar
+              shape="square"
+              style={{
+                cursor: "pointer",
+                backgroundColor: "var(--secondary-color)",
               }}
+              size="medium"
+              icon={<FiUser />}
+            />
+          </div>
+          <Badge count={cartItems.length} style={{}}>
+            <Popover content={content} title="Cart items">
+              <Avatar
+                onClick={() => {
+                  openCartDrawer();
+                }}
                 shape="square"
                 style={{
                   cursor: "pointer",
@@ -156,9 +203,12 @@ const NavBar = () => {
           </Badge>
         </Row>
       </Row>
-      <CartDrawer isOpen={isCartDrawerOpen} onClose={()=>{
-        setIsCartDrawerOpen(false)
-      }} />
+      <CartDrawer
+        isOpen={isCartDrawerOpen}
+        onClose={() => {
+          setIsCartDrawerOpen(false);
+        }}
+      />
     </Row>
   );
 };
