@@ -5,6 +5,7 @@ import AdminRoutes from "./routes/adminRoutes";
 import ProtectedRoute from "./configs/protectedRoutes";
 import AuthPage from "./pages/auth/authPage";
 import { useEffect } from "react";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   useEffect(() => {
@@ -14,6 +15,7 @@ function App() {
   }, []);
   return (
     <Router>
+      <ScrollToTop/>
       <Routes>
         <Route path="/auth" element={<AuthPage />} />
 
