@@ -30,6 +30,33 @@ class HomeAction {
       };
     }
   }
+  async fetchTrendingProductsAsync() {
+    try {
+      console.log("[TRENDING_PRODUCT] Product fetch start ");
+      var response = await apiClient.get(API_ENDPOINTS.TRENDING_PRODUCT);
+      if (response.data.success) {
+        console.log("[TRENDING_PRODUCT] Product success:", response.data.data);
+        return {
+          success: true,
+          message: response.data.message,
+          products: response.data.data,
+        };
+      } else {
+        console.log("[TRENDING_PRODUCT] Product Error:", response.data.message);
+        return {
+          success: false,
+          message: response.data.message,
+          products: [],
+        };
+      }
+    } catch (ex) {
+      console.log("[TRENDING_PRODUCT] Product error:", ex);
+      return {
+        success: false,
+        message: ex.message,
+      };
+    }
+  }
 }
 
 export default new HomeAction();

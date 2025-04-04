@@ -6,8 +6,8 @@ const homeSlice = createSlice({
     products:[],
     productLoading:false,
     productFetchError:null,
-    trandingProducts :[],
-    trandingProductLoading:false,
+    trendingProducts :[],
+    trendingProductLoading:false,
     blogPost:[],
     blogLoading:false,
   },
@@ -25,9 +25,23 @@ const homeSlice = createSlice({
     {
       state.productLoading=false;
       state.productFetchError=action.payload;
-    }
+    },
+    trendingFetchStart :(state)=>
+    {
+      state.trendingProductLoading=true;
+    },
+    trendingFetchSuccess :(state,action)=>
+    {
+      state.trendingProductLoading=false;
+      state.trendingProducts=action.payload;
+    },
+    trendingFetchFailure:(state,action)=>
+    {
+      state.trendingProductLoading=false;
+      state.productFetchError=action.payload;
+    },
   },
 });
 
-export const {productFetchStart,productFetchSuccess,productFetchFailure  } = homeSlice.actions;
+export const {productFetchStart,productFetchSuccess,productFetchFailure,trendingFetchStart,trendingFetchSuccess ,trendingFetchFailure } = homeSlice.actions;
 export default homeSlice.reducer;

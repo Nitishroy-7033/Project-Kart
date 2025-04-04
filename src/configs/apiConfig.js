@@ -6,6 +6,7 @@ export const API_ENDPOINTS = {
     REGISTER: `${BASE_URL}/Auth/register`,
     PRODUCTS: `${BASE_URL}/products`,
     REVIEWS: `${BASE_URL}/reviews`,
+    TRENDING_PRODUCT:`${BASE_URL}/trending-products`,
   };
   
   // Local Storage Keys

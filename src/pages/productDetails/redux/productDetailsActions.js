@@ -34,6 +34,7 @@ class ProductDetailsActions {
       };
     }
   }
+  
 
   async giveProductReviewAsync({ id, description, rating, images }) {
     try {

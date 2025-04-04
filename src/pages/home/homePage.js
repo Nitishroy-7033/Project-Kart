@@ -23,6 +23,9 @@ import {
   productFetchFailure,
   productFetchStart,
   productFetchSuccess,
+  trendingFetchStart,
+  trendingFetchSuccess,
+  trendingFetchFailure,
 } from "./redux/homeSlice";
 import ProductCartSkeleton from "../../skeleton/productCartSkeleton";
 import ProductShowCaseTileSkeleton from "../../skeleton/productShowCaseTileSkeleton";
@@ -33,9 +36,11 @@ const HomePage = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { products, productLoading } = useSelector((state) => state.home);
+  const { products, productLoading, trendingProducts, trendingProductLoading } =
+    useSelector((state) => state.home);
   useEffect(() => {
     fetchProductsAsync();
+    fetchTrendingProductsAsync();
   }, []);
 
   const handleLoadMoreProduct = () => {
@@ -138,12 +143,40 @@ const HomePage = () => {
       });
     }
   };
+  const fetchTrendingProductsAsync = async () => {
+    // Dispatch productFetchStart as a function
+    dispatch(trendingFetchStart());
+    console.log("loading", productLoading);
+
+    try {
+      var response = await homeActions.fetchTrendingProductsAsync();
+      console.log("Home product response", response);
+
+      if (response.success) {
+        dispatch(trendingFetchSuccess(response.products));
+      } else {
+        dispatch(trendingFetchFailure(response.message));
+        messageApi.open({
+          type: "error",
+          content: response.message,
+          duration: 5,
+        });
+      }
+    } catch (error) {
+      dispatch(trendingFetchFailure(error.message));
+      messageApi.open({
+        type: "error",
+        content: error.message,
+        duration: 5,
+      });
+    }
+  };
 
   const handlerContactusClick = () => {
     console.log("Home page product", products);
-    products.products.map((e)=>{
-      console.log(e)
-    })
+    products.products.map((e) => {
+      console.log(e);
+    });
   };
 
   const handleProductClick = (product) => {
@@ -182,88 +215,78 @@ const HomePage = () => {
           <Row
             justify="center"
             onClick={() => {
-              handlerContactusClick();
-            }}
-          >
-            <div className="live-button">
-              <div className="circle"></div>
-              Contact With Us
-            </div>
-          </Row>
-          <Row justify="center">
-            <div className="brand-tagline">
-              One stop solution for all Students who{" "}
-              <span
+                handlerContactusClick();
+                }}
+                >
+                <div className="live-button">
+                <div className="circle"></div>
+                Contact With Us
+                </div>
+                </Row>
+                <Row justify="center">
+                <div className="brand-tagline">
+                One stop solution for all Students who{" "}
+                <span
                 style={{
                   color: "var(--secondary-color)",
                   fontWeight: "bold",
                 }}
-              >
+                >
                 need project
-              </span>
-            </div>
-          </Row>
-        </Col>
-      </Row>
-      <Row className="body-container" justify={"center"}>
-        <Space
-          style={{
-            fontSize: "25px",
-            fontWeight: "600",
-          }}
-        >
-          💹 Tranding Products
-        </Space>
-      </Row>
-      <ProductShowCaseTile
-        image={
-          "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg"
-        }
-        buttonText={"Read More"}
-        description={
-          "All in one solution for school college. this is complete solution with Frontend and backend. Backend in dot net and front end in react."
-        }
-        title={"School Management System"}
-        tags={"Tranding+Sell"}
-      />
-      <ProductShowCaseTile
-        isPrimary={false}
-        image={
-          "https://d2v5dzhdg4zhx3.cloudfront.net/web-assets/images/storypages/primary/ProductShowcasesampleimages/JPEG/Product+Showcase-1.jpg"
-        }
-        buttonText={"Read More"}
-        description={
-          "All in one solution for school college. this is complete solution with Frontend and backend. Backend in dot net and front end in react."
-        }
-        title={"School Management System"}
-        tags={"Tranding+Sell"}
-      />
-    <ProductShowCaseTileSkeleton isLoading={true} isPrimary={false}/>
-   
-      <Row className="body-container" justify={"center"}>
-        <Space
-          style={{
-            fontSize: "25px",
-            fontWeight: "600",
-          }}
-        >
-          All Products 🛒
-        </Space>
-      </Row>
-      <Row className="body-container" style={{ width: "100%" }}>
-        <Col style={{ width: "100%" }}>
-          <Row justify={"space-between"}>
-            <Row
-              style={{
+                </span>
+                </div>
+                </Row>
+              </Col>
+              </Row>
+              <Row className="body-container" justify={"center"}>
+              <Space
+                style={{
+                fontSize: "25px",
+                fontWeight: "600",
+                }}
+              >
+                💹 Tranding Products
+              </Space>
+              </Row>
+              {trendingProductLoading ? (
+                <ProductShowCaseTileSkeleton isLoading={true} isPrimary={false} />
+              ) : (
+                trendingProducts.map((product, index) => (
+                <ProductShowCaseTile
+                  isPrimary={index % 2 === 0}
+                  key={product.id}
+                  image={product.coverImage}
+                  buttonText={"Read More"}
+                  description={product.description}
+                  title={product.title}
+                  tags={product.sellTag}
+                />
+                ))
+              )}
+              <Row className="body-container" justify={"center"}>
+              <Space
+                style={{
+                fontSize: "25px",
+                fontWeight: "600",
+                }}
+              >
+                All Products 🛒
+              </Space>
+              </Row>
+              <Row className="body-container" style={{ width: "100%" }}>
+              <Col style={{ width: "100%" }}>
+                <Row justify={"space-between"}>
+                <Row
+                style={{
                 fontSize: "18px",
                 fontWeight: "500",
                 color: "var( --lable-color)",
-              }}
-            >
-              Total {products.totalProducts} Products We have ! 
-            </Row>
-            <Row>
-              <Select
+                }}
+                >
+                Total {products.totalProducts} Products We have !
+                </Row>
+                <Row>
+                <Select
                 showSearch
                 placeholder="Select filter"
                 optionFilterProp="label"
@@ -281,12 +304,12 @@ const HomePage = () => {
       <Row gutter={[16, 16]} className="body-container">
         {productLoading ? (
           <>
-           <ProductCartSkeleton isLoading={productLoading}/>
-            <ProductCartSkeleton isLoading={productLoading}/>
-            <ProductCartSkeleton isLoading={productLoading}/>
-           <ProductCartSkeleton isLoading={productLoading}/>
-            <ProductCartSkeleton isLoading={productLoading}/>
-            <ProductCartSkeleton isLoading={productLoading}/>
+            <ProductCartSkeleton isLoading={productLoading} />
+            <ProductCartSkeleton isLoading={productLoading} />
+            <ProductCartSkeleton isLoading={productLoading} />
+            <ProductCartSkeleton isLoading={productLoading} />
+            <ProductCartSkeleton isLoading={productLoading} />
+            <ProductCartSkeleton isLoading={productLoading} />
           </>
         ) : products.products && products.products.length > 0 ? (
           products.products.map((product) => (
