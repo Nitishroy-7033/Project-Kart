@@ -18,7 +18,7 @@ import { useEffect, useState } from "react";
 import { MdCheckBox } from "react-icons/md";
 
 const ProductDetailsWidget = ({}) => {
-  const [inCart,setInCart] = useState(false);
+  const [inCart, setInCart] = useState(false);
   const techColors = [
     "#f34f29",
     "#3572A5",
@@ -74,27 +74,27 @@ const ProductDetailsWidget = ({}) => {
     ],
   };
   const dispatch = useDispatch();
-  
-  useEffect(()=>{
-    const existingItem = cartItems.find((item) => item.id === productDetails.id);
-      if (existingItem) {
-        setInCart(true);
-      } else {
-        console.log("Product added to cart:");
-        setInCart(false);
-      }
-  })
+
+  useEffect(() => {
+    const existingItem = cartItems.find(
+      (item) => item.id === productDetails.id
+    );
+    if (existingItem) {
+      setInCart(true);
+    } else {
+      console.log("Product added to cart:");
+      setInCart(false);
+    }
+  });
 
   const { productDetails, productLoading } = useSelector(
     (state) => state.productDetails
   );
-  const { cartItems } = useSelector(
-    (state) => state.cart
-  );
+  const { cartItems } = useSelector((state) => state.cart);
 
-  const addCartItemHandle = ()=>{
-    dispatch(addCartItem(productDetails))
-  }
+  const addCartItemHandle = () => {
+    dispatch(addCartItem(productDetails));
+  };
   return (
     <Col
       align="start"
@@ -153,14 +153,7 @@ const ProductDetailsWidget = ({}) => {
           </Row>
         </Col>
       </Row>
-      <p>
-        This is a most importaint product that will provide you parking space
-        where you want you can book your parking space and pay online. and from
-        anywhere you can book your parking space. This is a most importaint
-        product that will provide you parking space where you want you can book
-        your parking space and pay online. and from anywhere you can book your
-        parking space.
-      </p>
+      <p>{productDetails.description}</p>
 
       <br></br>
 
@@ -168,58 +161,60 @@ const ProductDetailsWidget = ({}) => {
       <Row>
         {/* Left Column */}
         <Col span={12}>
-          {product.features
-            .slice(0, Math.ceil(product.features.length / 2))
-            .map((feature, index) => (
-              <Row
-                align="middle"
-                key={index}
-                style={{
-                  gap: "10px",
-                  padding: "10px 0px",
-                  fontSize: "15px",
-                  fontWeight: "500",
-                }}
-              >
-                <div
+          {productDetails?.features &&
+            productDetails.features
+              .slice(0, Math.ceil(productDetails.features.length / 2))
+              .map((feature, index) => (
+                <Row
+                  align="middle"
+                  key={index}
                   style={{
-                    width: "15px",
-                    height: "15px",
-                    borderRadius: "50%",
-                    backgroundColor: "var(--primary-color)",
+                    gap: "10px",
+                    padding: "10px 0px",
+                    fontSize: "15px",
+                    fontWeight: "500",
                   }}
-                ></div>
-                {feature}
-              </Row>
-            ))}
+                >
+                  <div
+                    style={{
+                      width: "15px",
+                      height: "15px",
+                      borderRadius: "50%",
+                      backgroundColor: "var(--primary-color)",
+                    }}
+                  ></div>
+                  {feature}
+                </Row>
+              ))}
         </Col>
 
         {/* Right Column */}
         <Col span={12}>
-          {product.features
-            .slice(Math.ceil(product.features.length / 2))
-            .map((feature, index) => (
-              <Row
-                align="middle"
-                key={index}
-                style={{
-                  gap: "10px",
-                  padding: "10px 0px",
-                  fontSize: "15px",
-                  fontWeight: "500",
-                }}
-              >
-                <div
+          {productDetails?.features &&
+            productDetails.features
+              .slice(Math.ceil(productDetails.features.length / 2))
+              .map((feature, index) => (
+                <Row
+                  align="middle"
+                  key={index}
                   style={{
-                    width: "15px",
-                    height: "15px",
-                    borderRadius: "50%",
-                    backgroundColor: "var(--primary-color)",
+                    gap: "10px",
+                    padding: "10px 0px",
+                    fontSize: "15px",
+                    fontWeight: "500",
                   }}
-                ></div>
-                {feature}
-              </Row>
-            ))}
+                >
+                  <div
+                    style={{
+                      width: "15px",
+                      height: "15px",
+                      borderRadius: "50%",
+                      backgroundColor: "var(--primary-color)",
+                    }}
+                  ></div>
+                  {feature}
+                </Row>
+              ))}
         </Col>
       </Row>
 
@@ -258,15 +253,15 @@ const ProductDetailsWidget = ({}) => {
         <Button className="buy-button">
           <FiSmile size={25} color="yellow" /> Buy Now
         </Button>
-        {
-          inCart ? <Button  className="add-to-cart-button">
-          <MdCheckBox size={20} /> CheckOut
-        </Button>
-        :
-        <Button onClick={addCartItemHandle}  className="add-to-cart-button">
-          <FiShoppingCart size={20} /> Add To Cart
-        </Button>
-        }
+        {inCart ? (
+          <Button className="add-to-cart-button">
+            <MdCheckBox size={20} /> CheckOut
+          </Button>
+        ) : (
+          <Button onClick={addCartItemHandle} className="add-to-cart-button">
+            <FiShoppingCart size={20} /> Add To Cart
+          </Button>
+        )}
         <Tooltip title={"Contact with seller"}>
           <Button className="squre-button" icon={<FiPhoneCall />} />
         </Tooltip>

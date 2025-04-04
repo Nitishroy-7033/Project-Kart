@@ -6,10 +6,7 @@ const BlogPostCard = ({ onClick, blogs }) => {
       className="blog-main-box"
       onClick={onClick}
       key={blogs.id}
-      md={9}
-      lg={8}
-      xl={9}
-      xxl={8}
+      md={9} lg={8} xl={8} xxl={8}
     >
       <img
         src={blogs.coverImage || "/placeholder.jpg"}

@@ -2,7 +2,6 @@
 import "../style.css";
 import React, { useRef } from "react";
 import { Row } from "antd";
-import { BiLeftArrow, BiRightArrow } from "react-icons/bi"; // Importing arrows from react-icons
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 const ProductDetailsImageCrousel = ({ images }) => {
   const scrollContainerRef = useRef(null);

@@ -33,11 +33,12 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   const {productDetails,productLoading} = useSelector((state) => state.productDetails);
   const [messageApi, contextHolder] = message.useMessage();
-
+  
   useEffect(() => {
     getProductDetailsById();
   }, [productId]);
-
+  console.table(productDetails);
+  console.log("Product Details:", productDetails);
   const getProductDetailsById = async () => {
     dispatch(productDetailsFetchStart()); 
 
@@ -71,8 +72,8 @@ const ProductDetails = () => {
       <br></br>
       <Row justify="space-between">
         <Col className="product-image-box" md={10} lg={9} xl={9} xxl={12}>
-          <img className="product-image" src={product.imageUrls[0]} />
-          <ProductDetailsImageCrousel images={product.imageUrls} />
+          <img className="product-image" src={productDetails.coverImage} alt={productDetails.name || "Product image"} />
+          <ProductDetailsImageCrousel images={productDetails.images ?? []} />
         </Col>
        <ProductDetailsWidget/>
       </Row>
