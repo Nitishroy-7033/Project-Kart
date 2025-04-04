@@ -339,7 +339,7 @@ const HomePage = () => {
         </Space>
       </Row>
 
-      <br></br>
+      {/* <br></br>
       <Row className="body-container" justify={"center"}>
         <Space
           style={{
@@ -359,7 +359,7 @@ const HomePage = () => {
         <Space>
           <Button>See more</Button>
         </Space>
-      </Row>
+      </Row> */}
       <br></br>
       <br></br>
     </Layout>
